@@ -1,0 +1,1598 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MadamRozikaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Article">
+          <Key>
+            <PropertyRef Name="ArticleId" />
+          </Key>
+          <Property Name="ArticleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AuthorId" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Status" Type="tinyint" Nullable="false" />
+          <Property Name="ArticleText" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PublishDate" Type="datetime" Nullable="false" />
+          <Property Name="SortingDate" Type="smalldatetime" Nullable="false" />
+          <Property Name="CommentActive" Type="bit" Nullable="false" />
+          <Property Name="Hit" Type="int" Nullable="false" />
+          <Property Name="Copyright" Type="tinyint" Nullable="false" />
+          <Property Name="Sites" Type="xml" />
+        </EntityType>
+        <EntityType Name="Author">
+          <Key>
+            <PropertyRef Name="AuthorId" />
+          </Key>
+          <Property Name="AuthorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Mail" Type="varchar" MaxLength="60" />
+          <Property Name="Status" Type="tinyint" Nullable="false" />
+          <Property Name="MainPageStatus" Type="smallint" Nullable="false" />
+          <Property Name="Sites" Type="xml" />
+          <Property Name="NameUrl" Type="varchar" MaxLength="70" />
+          <Property Name="imageUrl" Type="varchar" MaxLength="70" />
+          <Property Name="TwitterUrl" Type="varchar" MaxLength="100" />
+          <Property Name="FacebookUrl" Type="varchar" MaxLength="100" />
+          <Property Name="LinkedinUrl" Type="varchar" MaxLength="100" />
+          <Property Name="Embed" Type="varchar" MaxLength="1000" />
+          <Property Name="Rank" Type="smallint" />
+          <Property Name="CategoryId" Type="int" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParentId" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Url" Type="varchar" MaxLength="100" />
+          <Property Name="Rank" Type="int" />
+          <Property Name="Status" Type="tinyint" />
+          <Property Name="MegaMenu" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="CategoryArticleRelation">
+          <Key>
+            <PropertyRef Name="CategoryArticleId" />
+          </Key>
+          <Property Name="CategoryArticleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryId" Type="int" />
+          <Property Name="ArticleId" Type="int" />
+        </EntityType>
+        <EntityType Name="CategoryGalleryRelation">
+          <Key>
+            <PropertyRef Name="CategoryGalleryId" />
+          </Key>
+          <Property Name="CategoryGalleryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GalleryId" Type="int" />
+          <Property Name="CategoryId" Type="int" />
+        </EntityType>
+        <EntityType Name="CategoryNewsRelation">
+          <Key>
+            <PropertyRef Name="CategoryNewsId" />
+          </Key>
+          <Property Name="CategoryNewsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryId" Type="int" />
+          <Property Name="NewsId" Type="int" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="CommentId" />
+          </Key>
+          <Property Name="CommentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" />
+          <Property Name="Text" Type="varchar(max)" />
+          <Property Name="Status" Type="tinyint" />
+          <Property Name="AddDate" Type="datetime" />
+          <Property Name="IpAddress" Type="varchar" MaxLength="150" />
+          <Property Name="ParentId" Type="int" />
+        </EntityType>
+        <EntityType Name="CommentArticleRelation">
+          <Key>
+            <PropertyRef Name="CommentArticleId" />
+          </Key>
+          <Property Name="CommentArticleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ArticleId" Type="int" />
+          <Property Name="CommentId" Type="int" />
+        </EntityType>
+        <EntityType Name="CommentAuthorRelation">
+          <Key>
+            <PropertyRef Name="CommentAuthorId" />
+          </Key>
+          <Property Name="CommentAuthorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CommentId" Type="int" />
+          <Property Name="AuthorId" Type="int" />
+        </EntityType>
+        <EntityType Name="CommentGalleryRelation">
+          <Key>
+            <PropertyRef Name="CommentGalleryId" />
+          </Key>
+          <Property Name="CommentGalleryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CommentId" Type="int" />
+          <Property Name="GalleryId" Type="int" />
+        </EntityType>
+        <EntityType Name="CommentNewsRelation">
+          <Key>
+            <PropertyRef Name="CommentNewsId" />
+          </Key>
+          <Property Name="CommentNewsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NewsId" Type="int" />
+          <Property Name="CommentId" Type="int" />
+        </EntityType>
+        <EntityType Name="Gallery">
+          <Key>
+            <PropertyRef Name="GalleryId" />
+          </Key>
+          <Property Name="GalleryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="TitleUrl" Type="nvarchar" MaxLength="350" />
+          <Property Name="SeoTitle" Type="nvarchar" MaxLength="300" />
+          <Property Name="SeoTitleUrl" Type="nvarchar" MaxLength="350" />
+          <Property Name="PublishDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="tinyint" Nullable="false" />
+          <Property Name="ItemCount" Type="int" Nullable="false" />
+          <Property Name="ImageUrl" Type="varchar" MaxLength="550" />
+          <Property Name="Tags" Type="varchar" MaxLength="550" />
+          <Property Name="FilePath" Type="varchar" MaxLength="550" />
+        </EntityType>
+        <EntityType Name="GalleryItem">
+          <Key>
+            <PropertyRef Name="ItemId" />
+          </Key>
+          <Property Name="ItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GalleryId" Type="int" Nullable="false" />
+          <Property Name="Summary" Type="nvarchar(max)" />
+          <Property Name="Type" Type="tinyint" Nullable="false" />
+          <Property Name="FilePath" Type="varchar" MaxLength="255" />
+          <Property Name="ItemOrder" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Headlines">
+          <Key>
+            <PropertyRef Name="HeadlineId" />
+          </Key>
+          <Property Name="HeadlineId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ObjectId" Type="int" Nullable="false" />
+          <Property Name="ObjectType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Url" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="ImageUrl" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="ImageUrlPrivate" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Site" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="DateTime" Type="smalldatetime" Nullable="false" />
+          <Property Name="Rank" Type="smallint" />
+          <Property Name="Status" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="NewsId" />
+          </Key>
+          <Property Name="NewsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="300" />
+          <Property Name="TitleUrl" Type="varchar" MaxLength="350" />
+          <Property Name="SeoTitle" Type="varchar" MaxLength="300" />
+          <Property Name="SeoTitleUrl" Type="varchar" MaxLength="350" />
+          <Property Name="Summary" Type="varchar" MaxLength="500" />
+          <Property Name="NewsText" Type="text" />
+          <Property Name="Status" Type="tinyint" />
+          <Property Name="PublishDate" Type="smalldatetime" />
+          <Property Name="ModifiedDate" Type="smalldatetime" />
+          <Property Name="CommentActive" Type="tinyint" />
+          <Property Name="GalleryId" Type="int" />
+          <Property Name="VideoId" Type="int" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="Tags" Type="varchar" MaxLength="1000" />
+          <Property Name="CategoryId" Type="int" />
+          <Property Name="ImageUrl" Type="varchar" MaxLength="500" />
+          <Property Name="UserStatus" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="varchar" MaxLength="50" />
+          <Property Name="IsActive" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="RoleUserRelation">
+          <Key>
+            <PropertyRef Name="RoleUserId" />
+          </Key>
+          <Property Name="RoleUserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleId" Type="int" />
+          <Property Name="UserId" Type="int" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="TagId" />
+          </Key>
+          <Property Name="TagId" Type="int" Nullable="false" />
+          <Property Name="Tag" Type="varchar" MaxLength="50" />
+          <Property Name="Url" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TagArticleRelation">
+          <Key>
+            <PropertyRef Name="TagArticleId" />
+          </Key>
+          <Property Name="TagArticleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ArticleId" Type="int" />
+          <Property Name="TagId" Type="int" />
+        </EntityType>
+        <EntityType Name="TagGalleryRelation">
+          <Key>
+            <PropertyRef Name="TagGalleryId" />
+          </Key>
+          <Property Name="TagGalleryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GalleryId" Type="int" />
+          <Property Name="TagId" Type="int" />
+        </EntityType>
+        <EntityType Name="TagNewsRelation">
+          <Key>
+            <PropertyRef Name="TagNewsId" />
+          </Key>
+          <Property Name="TagNewsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TagId" Type="int" />
+          <Property Name="NewsId" Type="int" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleId" Type="tinyint" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="NickName" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CategoryArticleRelation_Article">
+          <End Role="Article" Type="Self.Article" Multiplicity="0..1" />
+          <End Role="CategoryArticleRelation" Type="Self.CategoryArticleRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="ArticleId" />
+            </Principal>
+            <Dependent Role="CategoryArticleRelation">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CategoryArticleRelation_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="CategoryArticleRelation" Type="Self.CategoryArticleRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="CategoryArticleRelation">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CategoryGalleryRelation_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="CategoryGalleryRelation" Type="Self.CategoryGalleryRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="CategoryGalleryRelation">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CategoryGalleryRelation_Gallery">
+          <End Role="Gallery" Type="Self.Gallery" Multiplicity="0..1" />
+          <End Role="CategoryGalleryRelation" Type="Self.CategoryGalleryRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gallery">
+              <PropertyRef Name="GalleryId" />
+            </Principal>
+            <Dependent Role="CategoryGalleryRelation">
+              <PropertyRef Name="GalleryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CategoryNewsRelation_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="CategoryNewsRelation" Type="Self.CategoryNewsRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="CategoryNewsRelation">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CategoryNewsRelation_News">
+          <End Role="News" Type="Self.News" Multiplicity="0..1" />
+          <End Role="CategoryNewsRelation" Type="Self.CategoryNewsRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="News">
+              <PropertyRef Name="NewsId" />
+            </Principal>
+            <Dependent Role="CategoryNewsRelation">
+              <PropertyRef Name="NewsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommentArticleRelation_Article">
+          <End Role="Article" Type="Self.Article" Multiplicity="0..1" />
+          <End Role="CommentArticleRelation" Type="Self.CommentArticleRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="ArticleId" />
+            </Principal>
+            <Dependent Role="CommentArticleRelation">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommentArticleRelation_Comment">
+          <End Role="Comment" Type="Self.Comment" Multiplicity="0..1" />
+          <End Role="CommentArticleRelation" Type="Self.CommentArticleRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comment">
+              <PropertyRef Name="CommentId" />
+            </Principal>
+            <Dependent Role="CommentArticleRelation">
+              <PropertyRef Name="CommentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommentAuthorRelation_Author">
+          <End Role="Author" Type="Self.Author" Multiplicity="0..1" />
+          <End Role="CommentAuthorRelation" Type="Self.CommentAuthorRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Author">
+              <PropertyRef Name="AuthorId" />
+            </Principal>
+            <Dependent Role="CommentAuthorRelation">
+              <PropertyRef Name="AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommentAuthorRelation_Category">
+          <End Role="Comment" Type="Self.Comment" Multiplicity="0..1" />
+          <End Role="CommentAuthorRelation" Type="Self.CommentAuthorRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comment">
+              <PropertyRef Name="CommentId" />
+            </Principal>
+            <Dependent Role="CommentAuthorRelation">
+              <PropertyRef Name="CommentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommentGalleryRelation_Comment">
+          <End Role="Comment" Type="Self.Comment" Multiplicity="0..1" />
+          <End Role="CommentGalleryRelation" Type="Self.CommentGalleryRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comment">
+              <PropertyRef Name="CommentId" />
+            </Principal>
+            <Dependent Role="CommentGalleryRelation">
+              <PropertyRef Name="CommentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommentGalleryRelation_Gallery">
+          <End Role="Gallery" Type="Self.Gallery" Multiplicity="0..1" />
+          <End Role="CommentGalleryRelation" Type="Self.CommentGalleryRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gallery">
+              <PropertyRef Name="GalleryId" />
+            </Principal>
+            <Dependent Role="CommentGalleryRelation">
+              <PropertyRef Name="GalleryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COmmentNewsRelation_Comment">
+          <End Role="Comment" Type="Self.Comment" Multiplicity="0..1" />
+          <End Role="CommentNewsRelation" Type="Self.CommentNewsRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comment">
+              <PropertyRef Name="CommentId" />
+            </Principal>
+            <Dependent Role="CommentNewsRelation">
+              <PropertyRef Name="CommentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COmmentNewsRelation_News">
+          <End Role="News" Type="Self.News" Multiplicity="0..1" />
+          <End Role="CommentNewsRelation" Type="Self.CommentNewsRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="News">
+              <PropertyRef Name="NewsId" />
+            </Principal>
+            <Dependent Role="CommentNewsRelation">
+              <PropertyRef Name="NewsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoleUserRelation_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="RoleUserRelation" Type="Self.RoleUserRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="RoleUserRelation">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoleUserRelation_RoleUserRelation">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="RoleUserRelation" Type="Self.RoleUserRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="RoleUserRelation">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TagArticleRelation_Article">
+          <End Role="Article" Type="Self.Article" Multiplicity="0..1" />
+          <End Role="TagArticleRelation" Type="Self.TagArticleRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="ArticleId" />
+            </Principal>
+            <Dependent Role="TagArticleRelation">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TagArticleRelation_Tag">
+          <End Role="Tag" Type="Self.Tag" Multiplicity="0..1" />
+          <End Role="TagArticleRelation" Type="Self.TagArticleRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tag">
+              <PropertyRef Name="TagId" />
+            </Principal>
+            <Dependent Role="TagArticleRelation">
+              <PropertyRef Name="TagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TagGalleryRelation_Gallery">
+          <End Role="Gallery" Type="Self.Gallery" Multiplicity="0..1" />
+          <End Role="TagGalleryRelation" Type="Self.TagGalleryRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gallery">
+              <PropertyRef Name="GalleryId" />
+            </Principal>
+            <Dependent Role="TagGalleryRelation">
+              <PropertyRef Name="GalleryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TagGalleryRelation_Tag">
+          <End Role="Tag" Type="Self.Tag" Multiplicity="0..1" />
+          <End Role="TagGalleryRelation" Type="Self.TagGalleryRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tag">
+              <PropertyRef Name="TagId" />
+            </Principal>
+            <Dependent Role="TagGalleryRelation">
+              <PropertyRef Name="TagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TagNewsRelation_News">
+          <End Role="News" Type="Self.News" Multiplicity="0..1" />
+          <End Role="TagNewsRelation" Type="Self.TagNewsRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="News">
+              <PropertyRef Name="NewsId" />
+            </Principal>
+            <Dependent Role="TagNewsRelation">
+              <PropertyRef Name="NewsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TagNewsRelation_Tag">
+          <End Role="Tag" Type="Self.Tag" Multiplicity="0..1" />
+          <End Role="TagNewsRelation" Type="Self.TagNewsRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tag">
+              <PropertyRef Name="TagId" />
+            </Principal>
+            <Dependent Role="TagNewsRelation">
+              <PropertyRef Name="TagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="Sp_GetNewsListWithCategoryUrl" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CategoryUrl" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="MadamRozikaModelStoreContainer">
+          <EntitySet Name="Article" EntityType="Self.Article" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Author" EntityType="Self.Author" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CategoryArticleRelation" EntityType="Self.CategoryArticleRelation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CategoryGalleryRelation" EntityType="Self.CategoryGalleryRelation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CategoryNewsRelation" EntityType="Self.CategoryNewsRelation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CommentArticleRelation" EntityType="Self.CommentArticleRelation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CommentAuthorRelation" EntityType="Self.CommentAuthorRelation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CommentGalleryRelation" EntityType="Self.CommentGalleryRelation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CommentNewsRelation" EntityType="Self.CommentNewsRelation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gallery" EntityType="Self.Gallery" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GalleryItem" EntityType="Self.GalleryItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Headlines" EntityType="Self.Headlines" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoleUserRelation" EntityType="Self.RoleUserRelation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tag" EntityType="Self.Tag" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TagArticleRelation" EntityType="Self.TagArticleRelation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TagGalleryRelation" EntityType="Self.TagGalleryRelation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TagNewsRelation" EntityType="Self.TagNewsRelation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CategoryArticleRelation_Article" Association="Self.FK_CategoryArticleRelation_Article">
+            <End Role="Article" EntitySet="Article" />
+            <End Role="CategoryArticleRelation" EntitySet="CategoryArticleRelation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CategoryArticleRelation_Category" Association="Self.FK_CategoryArticleRelation_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="CategoryArticleRelation" EntitySet="CategoryArticleRelation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CategoryGalleryRelation_Category" Association="Self.FK_CategoryGalleryRelation_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="CategoryGalleryRelation" EntitySet="CategoryGalleryRelation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CategoryGalleryRelation_Gallery" Association="Self.FK_CategoryGalleryRelation_Gallery">
+            <End Role="Gallery" EntitySet="Gallery" />
+            <End Role="CategoryGalleryRelation" EntitySet="CategoryGalleryRelation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CategoryNewsRelation_Category" Association="Self.FK_CategoryNewsRelation_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="CategoryNewsRelation" EntitySet="CategoryNewsRelation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CategoryNewsRelation_News" Association="Self.FK_CategoryNewsRelation_News">
+            <End Role="News" EntitySet="News" />
+            <End Role="CategoryNewsRelation" EntitySet="CategoryNewsRelation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommentArticleRelation_Article" Association="Self.FK_CommentArticleRelation_Article">
+            <End Role="Article" EntitySet="Article" />
+            <End Role="CommentArticleRelation" EntitySet="CommentArticleRelation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommentArticleRelation_Comment" Association="Self.FK_CommentArticleRelation_Comment">
+            <End Role="Comment" EntitySet="Comment" />
+            <End Role="CommentArticleRelation" EntitySet="CommentArticleRelation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommentAuthorRelation_Author" Association="Self.FK_CommentAuthorRelation_Author">
+            <End Role="Author" EntitySet="Author" />
+            <End Role="CommentAuthorRelation" EntitySet="CommentAuthorRelation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommentAuthorRelation_Category" Association="Self.FK_CommentAuthorRelation_Category">
+            <End Role="Comment" EntitySet="Comment" />
+            <End Role="CommentAuthorRelation" EntitySet="CommentAuthorRelation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommentGalleryRelation_Comment" Association="Self.FK_CommentGalleryRelation_Comment">
+            <End Role="Comment" EntitySet="Comment" />
+            <End Role="CommentGalleryRelation" EntitySet="CommentGalleryRelation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommentGalleryRelation_Gallery" Association="Self.FK_CommentGalleryRelation_Gallery">
+            <End Role="Gallery" EntitySet="Gallery" />
+            <End Role="CommentGalleryRelation" EntitySet="CommentGalleryRelation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COmmentNewsRelation_Comment" Association="Self.FK_COmmentNewsRelation_Comment">
+            <End Role="Comment" EntitySet="Comment" />
+            <End Role="CommentNewsRelation" EntitySet="CommentNewsRelation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COmmentNewsRelation_News" Association="Self.FK_COmmentNewsRelation_News">
+            <End Role="News" EntitySet="News" />
+            <End Role="CommentNewsRelation" EntitySet="CommentNewsRelation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoleUserRelation_Role" Association="Self.FK_RoleUserRelation_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="RoleUserRelation" EntitySet="RoleUserRelation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoleUserRelation_RoleUserRelation" Association="Self.FK_RoleUserRelation_RoleUserRelation">
+            <End Role="User" EntitySet="User" />
+            <End Role="RoleUserRelation" EntitySet="RoleUserRelation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TagArticleRelation_Article" Association="Self.FK_TagArticleRelation_Article">
+            <End Role="Article" EntitySet="Article" />
+            <End Role="TagArticleRelation" EntitySet="TagArticleRelation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TagArticleRelation_Tag" Association="Self.FK_TagArticleRelation_Tag">
+            <End Role="Tag" EntitySet="Tag" />
+            <End Role="TagArticleRelation" EntitySet="TagArticleRelation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TagGalleryRelation_Gallery" Association="Self.FK_TagGalleryRelation_Gallery">
+            <End Role="Gallery" EntitySet="Gallery" />
+            <End Role="TagGalleryRelation" EntitySet="TagGalleryRelation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TagGalleryRelation_Tag" Association="Self.FK_TagGalleryRelation_Tag">
+            <End Role="Tag" EntitySet="Tag" />
+            <End Role="TagGalleryRelation" EntitySet="TagGalleryRelation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TagNewsRelation_News" Association="Self.FK_TagNewsRelation_News">
+            <End Role="News" EntitySet="News" />
+            <End Role="TagNewsRelation" EntitySet="TagNewsRelation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TagNewsRelation_Tag" Association="Self.FK_TagNewsRelation_Tag">
+            <End Role="Tag" EntitySet="Tag" />
+            <End Role="TagNewsRelation" EntitySet="TagNewsRelation" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MadamRozikaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Article">
+          <Key>
+            <PropertyRef Name="ArticleId" />
+          </Key>
+          <Property Name="ArticleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AuthorId" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Status" Type="Byte" Nullable="false" />
+          <Property Name="ArticleText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PublishDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SortingDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CommentActive" Type="Boolean" Nullable="false" />
+          <Property Name="Hit" Type="Int32" Nullable="false" />
+          <Property Name="Copyright" Type="Byte" Nullable="false" />
+          <Property Name="Sites" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CategoryArticleRelations" Relationship="MadamRozikaModel.FK_CategoryArticleRelation_Article" FromRole="Article" ToRole="CategoryArticleRelation" />
+          <NavigationProperty Name="CommentArticleRelations" Relationship="MadamRozikaModel.FK_CommentArticleRelation_Article" FromRole="Article" ToRole="CommentArticleRelation" />
+          <NavigationProperty Name="TagArticleRelations" Relationship="MadamRozikaModel.FK_TagArticleRelation_Article" FromRole="Article" ToRole="TagArticleRelation" />
+        </EntityType>
+        <EntityType Name="Author">
+          <Key>
+            <PropertyRef Name="AuthorId" />
+          </Key>
+          <Property Name="AuthorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Mail" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Byte" Nullable="false" />
+          <Property Name="MainPageStatus" Type="Int16" Nullable="false" />
+          <Property Name="Sites" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NameUrl" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="imageUrl" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="TwitterUrl" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FacebookUrl" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LinkedinUrl" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Embed" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Rank" Type="Int16" />
+          <Property Name="CategoryId" Type="Int32" />
+          <NavigationProperty Name="CommentAuthorRelations" Relationship="MadamRozikaModel.FK_CommentAuthorRelation_Author" FromRole="Author" ToRole="CommentAuthorRelation" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParentId" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Url" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Rank" Type="Int32" />
+          <Property Name="Status" Type="Byte" />
+          <Property Name="MegaMenu" Type="Byte" />
+          <NavigationProperty Name="CategoryNewsRelations" Relationship="MadamRozikaModel.FK_CategoryNewsRelation_Category" FromRole="Category" ToRole="CategoryNewsRelation" />
+          <NavigationProperty Name="CategoryGalleryRelations" Relationship="MadamRozikaModel.FK_CategoryGalleryRelation_Category" FromRole="Category" ToRole="CategoryGalleryRelation" />
+          <NavigationProperty Name="CategoryArticleRelations" Relationship="MadamRozikaModel.FK_CategoryArticleRelation_Category" FromRole="Category" ToRole="CategoryArticleRelation" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="CommentId" />
+          </Key>
+          <Property Name="CommentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Byte" />
+          <Property Name="AddDate" Type="DateTime" Precision="3" />
+          <Property Name="IpAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ParentId" Type="Int32" />
+          <NavigationProperty Name="CommentArticleRelations" Relationship="MadamRozikaModel.FK_CommentArticleRelation_Comment" FromRole="Comment" ToRole="CommentArticleRelation" />
+          <NavigationProperty Name="CommentAuthorRelations" Relationship="MadamRozikaModel.FK_CommentAuthorRelation_Category" FromRole="Comment" ToRole="CommentAuthorRelation" />
+          <NavigationProperty Name="CommentGalleryRelations" Relationship="MadamRozikaModel.FK_CommentGalleryRelation_Comment" FromRole="Comment" ToRole="CommentGalleryRelation" />
+          <NavigationProperty Name="CommentNewsRelations" Relationship="MadamRozikaModel.FK_COmmentNewsRelation_Comment" FromRole="Comment" ToRole="CommentNewsRelation" />
+        </EntityType>
+        <EntityType Name="Gallery">
+          <Key>
+            <PropertyRef Name="GalleryId" />
+          </Key>
+          <Property Name="GalleryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TitleUrl" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="SeoTitle" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="SeoTitleUrl" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="PublishDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="Byte" Nullable="false" />
+          <Property Name="ItemCount" Type="Int32" Nullable="false" />
+          <Property Name="ImageUrl" Type="String" MaxLength="550" FixedLength="false" Unicode="false" />
+          <Property Name="Tags" Type="String" MaxLength="550" FixedLength="false" Unicode="false" />
+          <Property Name="FilePath" Type="String" MaxLength="550" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CategoryGalleryRelations" Relationship="MadamRozikaModel.FK_CategoryGalleryRelation_Gallery" FromRole="Gallery" ToRole="CategoryGalleryRelation" />
+          <NavigationProperty Name="CommentGalleryRelations" Relationship="MadamRozikaModel.FK_CommentGalleryRelation_Gallery" FromRole="Gallery" ToRole="CommentGalleryRelation" />
+          <NavigationProperty Name="TagGalleryRelations" Relationship="MadamRozikaModel.FK_TagGalleryRelation_Gallery" FromRole="Gallery" ToRole="TagGalleryRelation" />
+        </EntityType>
+        <EntityType Name="GalleryItem">
+          <Key>
+            <PropertyRef Name="ItemId" />
+          </Key>
+          <Property Name="ItemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GalleryId" Type="Int32" Nullable="false" />
+          <Property Name="Summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="Byte" Nullable="false" />
+          <Property Name="FilePath" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ItemOrder" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Headline">
+          <Key>
+            <PropertyRef Name="HeadlineId" />
+          </Key>
+          <Property Name="HeadlineId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ObjectId" Type="Int32" Nullable="false" />
+          <Property Name="ObjectType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Url" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ImageUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ImageUrlPrivate" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Site" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Rank" Type="Int16" />
+          <Property Name="Status" Type="Byte" />
+        </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="NewsId" />
+          </Key>
+          <Property Name="NewsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="TitleUrl" Type="String" MaxLength="350" FixedLength="false" Unicode="false" />
+          <Property Name="SeoTitle" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="SeoTitleUrl" Type="String" MaxLength="350" FixedLength="false" Unicode="false" />
+          <Property Name="Summary" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="NewsText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Byte" />
+          <Property Name="PublishDate" Type="DateTime" Precision="0" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="0" />
+          <Property Name="CommentActive" Type="Byte" />
+          <Property Name="GalleryId" Type="Int32" />
+          <Property Name="VideoId" Type="Int32" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="Tags" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="CategoryId" Type="Int32" />
+          <Property Name="ImageUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="UserStatus" Type="Byte" />
+          <NavigationProperty Name="CategoryNewsRelations" Relationship="MadamRozikaModel.FK_CategoryNewsRelation_News" FromRole="News" ToRole="CategoryNewsRelation" />
+          <NavigationProperty Name="CommentNewsRelations" Relationship="MadamRozikaModel.FK_COmmentNewsRelation_News" FromRole="News" ToRole="CommentNewsRelation" />
+          <NavigationProperty Name="TagNewsRelations" Relationship="MadamRozikaModel.FK_TagNewsRelation_News" FromRole="News" ToRole="TagNewsRelation" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Byte" />
+          <NavigationProperty Name="RoleUserRelations" Relationship="MadamRozikaModel.FK_RoleUserRelation_Role" FromRole="Role" ToRole="RoleUserRelation" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="TagId" />
+          </Key>
+          <Property Name="TagId" Type="Int32" Nullable="false" />
+          <Property Name="Tag1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Url" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TagArticleRelations" Relationship="MadamRozikaModel.FK_TagArticleRelation_Tag" FromRole="Tag" ToRole="TagArticleRelation" />
+          <NavigationProperty Name="TagGalleryRelations" Relationship="MadamRozikaModel.FK_TagGalleryRelation_Tag" FromRole="Tag" ToRole="TagGalleryRelation" />
+          <NavigationProperty Name="TagNewsRelations" Relationship="MadamRozikaModel.FK_TagNewsRelation_Tag" FromRole="Tag" ToRole="TagNewsRelation" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleId" Type="Byte" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NickName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="RoleUserRelations" Relationship="MadamRozikaModel.FK_RoleUserRelation_RoleUserRelation" FromRole="User" ToRole="RoleUserRelation" />
+        </EntityType>
+        <EntityContainer Name="MadamRozikaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Articles" EntityType="Self.Article" />
+          <EntitySet Name="Authors" EntityType="Self.Author" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Comments" EntityType="Self.Comment" />
+          <EntitySet Name="Galleries" EntityType="Self.Gallery" />
+          <EntitySet Name="GalleryItems" EntityType="Self.GalleryItem" />
+          <EntitySet Name="Headlines" EntityType="Self.Headline" />
+          <EntitySet Name="News" EntityType="Self.News" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="Tags" EntityType="Self.Tag" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <FunctionImport Name="Sp_GetNewsListWithCategoryUrl">
+          <Parameter Name="CategoryUrl" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="CategoryNewsRelations" EntityType="MadamRozikaModel.CategoryNewsRelation" />
+          <AssociationSet Name="FK_CategoryNewsRelation_Category" Association="MadamRozikaModel.FK_CategoryNewsRelation_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="CategoryNewsRelation" EntitySet="CategoryNewsRelations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CategoryNewsRelation_News" Association="MadamRozikaModel.FK_CategoryNewsRelation_News">
+            <End Role="News" EntitySet="News" />
+            <End Role="CategoryNewsRelation" EntitySet="CategoryNewsRelations" />
+          </AssociationSet>
+          <EntitySet Name="CategoryGalleryRelations" EntityType="MadamRozikaModel.CategoryGalleryRelation" />
+          <AssociationSet Name="FK_CategoryGalleryRelation_Category" Association="MadamRozikaModel.FK_CategoryGalleryRelation_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="CategoryGalleryRelation" EntitySet="CategoryGalleryRelations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CategoryGalleryRelation_Gallery" Association="MadamRozikaModel.FK_CategoryGalleryRelation_Gallery">
+            <End Role="Gallery" EntitySet="Galleries" />
+            <End Role="CategoryGalleryRelation" EntitySet="CategoryGalleryRelations" />
+          </AssociationSet>
+          <EntitySet Name="CategoryArticleRelations" EntityType="MadamRozikaModel.CategoryArticleRelation" />
+          <AssociationSet Name="FK_CategoryArticleRelation_Article" Association="MadamRozikaModel.FK_CategoryArticleRelation_Article">
+            <End Role="Article" EntitySet="Articles" />
+            <End Role="CategoryArticleRelation" EntitySet="CategoryArticleRelations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CategoryArticleRelation_Category" Association="MadamRozikaModel.FK_CategoryArticleRelation_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="CategoryArticleRelation" EntitySet="CategoryArticleRelations" />
+          </AssociationSet>
+          <EntitySet Name="CommentArticleRelations" EntityType="MadamRozikaModel.CommentArticleRelation" />
+          <EntitySet Name="CommentAuthorRelations" EntityType="MadamRozikaModel.CommentAuthorRelation" />
+          <EntitySet Name="CommentGalleryRelations" EntityType="MadamRozikaModel.CommentGalleryRelation" />
+          <EntitySet Name="CommentNewsRelations" EntityType="MadamRozikaModel.CommentNewsRelation" />
+          <EntitySet Name="RoleUserRelations" EntityType="MadamRozikaModel.RoleUserRelation" />
+          <AssociationSet Name="FK_CommentArticleRelation_Article" Association="MadamRozikaModel.FK_CommentArticleRelation_Article">
+            <End Role="Article" EntitySet="Articles" />
+            <End Role="CommentArticleRelation" EntitySet="CommentArticleRelations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommentAuthorRelation_Author" Association="MadamRozikaModel.FK_CommentAuthorRelation_Author">
+            <End Role="Author" EntitySet="Authors" />
+            <End Role="CommentAuthorRelation" EntitySet="CommentAuthorRelations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommentArticleRelation_Comment" Association="MadamRozikaModel.FK_CommentArticleRelation_Comment">
+            <End Role="Comment" EntitySet="Comments" />
+            <End Role="CommentArticleRelation" EntitySet="CommentArticleRelations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommentAuthorRelation_Category" Association="MadamRozikaModel.FK_CommentAuthorRelation_Category">
+            <End Role="Comment" EntitySet="Comments" />
+            <End Role="CommentAuthorRelation" EntitySet="CommentAuthorRelations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommentGalleryRelation_Comment" Association="MadamRozikaModel.FK_CommentGalleryRelation_Comment">
+            <End Role="Comment" EntitySet="Comments" />
+            <End Role="CommentGalleryRelation" EntitySet="CommentGalleryRelations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COmmentNewsRelation_Comment" Association="MadamRozikaModel.FK_COmmentNewsRelation_Comment">
+            <End Role="Comment" EntitySet="Comments" />
+            <End Role="CommentNewsRelation" EntitySet="CommentNewsRelations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommentGalleryRelation_Gallery" Association="MadamRozikaModel.FK_CommentGalleryRelation_Gallery">
+            <End Role="Gallery" EntitySet="Galleries" />
+            <End Role="CommentGalleryRelation" EntitySet="CommentGalleryRelations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COmmentNewsRelation_News" Association="MadamRozikaModel.FK_COmmentNewsRelation_News">
+            <End Role="News" EntitySet="News" />
+            <End Role="CommentNewsRelation" EntitySet="CommentNewsRelations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoleUserRelation_Role" Association="MadamRozikaModel.FK_RoleUserRelation_Role">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="RoleUserRelation" EntitySet="RoleUserRelations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoleUserRelation_RoleUserRelation" Association="MadamRozikaModel.FK_RoleUserRelation_RoleUserRelation">
+            <End Role="User" EntitySet="Users" />
+            <End Role="RoleUserRelation" EntitySet="RoleUserRelations" />
+          </AssociationSet>
+          <EntitySet Name="TagArticleRelations" EntityType="MadamRozikaModel.TagArticleRelation" />
+          <EntitySet Name="TagGalleryRelations" EntityType="MadamRozikaModel.TagGalleryRelation" />
+          <EntitySet Name="TagNewsRelations" EntityType="MadamRozikaModel.TagNewsRelation" />
+          <AssociationSet Name="FK_TagArticleRelation_Article" Association="MadamRozikaModel.FK_TagArticleRelation_Article">
+            <End Role="Article" EntitySet="Articles" />
+            <End Role="TagArticleRelation" EntitySet="TagArticleRelations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TagGalleryRelation_Gallery" Association="MadamRozikaModel.FK_TagGalleryRelation_Gallery">
+            <End Role="Gallery" EntitySet="Galleries" />
+            <End Role="TagGalleryRelation" EntitySet="TagGalleryRelations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TagNewsRelation_News" Association="MadamRozikaModel.FK_TagNewsRelation_News">
+            <End Role="News" EntitySet="News" />
+            <End Role="TagNewsRelation" EntitySet="TagNewsRelations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TagArticleRelation_Tag" Association="MadamRozikaModel.FK_TagArticleRelation_Tag">
+            <End Role="Tag" EntitySet="Tags" />
+            <End Role="TagArticleRelation" EntitySet="TagArticleRelations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TagGalleryRelation_Tag" Association="MadamRozikaModel.FK_TagGalleryRelation_Tag">
+            <End Role="Tag" EntitySet="Tags" />
+            <End Role="TagGalleryRelation" EntitySet="TagGalleryRelations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TagNewsRelation_Tag" Association="MadamRozikaModel.FK_TagNewsRelation_Tag">
+            <End Role="Tag" EntitySet="Tags" />
+            <End Role="TagNewsRelation" EntitySet="TagNewsRelations" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="CategoryNewsRelation">
+          <Key>
+            <PropertyRef Name="CategoryNewsId" />
+          </Key>
+          <Property Name="CategoryNewsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryId" Type="Int32" />
+          <Property Name="NewsId" Type="Int32" />
+          <NavigationProperty Name="Category" Relationship="MadamRozikaModel.FK_CategoryNewsRelation_Category" FromRole="CategoryNewsRelation" ToRole="Category" />
+          <NavigationProperty Name="News" Relationship="MadamRozikaModel.FK_CategoryNewsRelation_News" FromRole="CategoryNewsRelation" ToRole="News" />
+        </EntityType>
+        <Association Name="FK_CategoryNewsRelation_Category">
+          <End Type="MadamRozikaModel.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="MadamRozikaModel.CategoryNewsRelation" Role="CategoryNewsRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="CategoryNewsRelation">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CategoryNewsRelation_News">
+          <End Type="MadamRozikaModel.News" Role="News" Multiplicity="0..1" />
+          <End Type="MadamRozikaModel.CategoryNewsRelation" Role="CategoryNewsRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="News">
+              <PropertyRef Name="NewsId" />
+            </Principal>
+            <Dependent Role="CategoryNewsRelation">
+              <PropertyRef Name="NewsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CategoryGalleryRelation">
+          <Key>
+            <PropertyRef Name="CategoryGalleryId" />
+          </Key>
+          <Property Name="CategoryGalleryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GalleryId" Type="Int32" />
+          <Property Name="CategoryId" Type="Int32" />
+          <NavigationProperty Name="Category" Relationship="MadamRozikaModel.FK_CategoryGalleryRelation_Category" FromRole="CategoryGalleryRelation" ToRole="Category" />
+          <NavigationProperty Name="Gallery" Relationship="MadamRozikaModel.FK_CategoryGalleryRelation_Gallery" FromRole="CategoryGalleryRelation" ToRole="Gallery" />
+        </EntityType>
+        <Association Name="FK_CategoryGalleryRelation_Category">
+          <End Type="MadamRozikaModel.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="MadamRozikaModel.CategoryGalleryRelation" Role="CategoryGalleryRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="CategoryGalleryRelation">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CategoryGalleryRelation_Gallery">
+          <End Type="MadamRozikaModel.Gallery" Role="Gallery" Multiplicity="0..1" />
+          <End Type="MadamRozikaModel.CategoryGalleryRelation" Role="CategoryGalleryRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gallery">
+              <PropertyRef Name="GalleryId" />
+            </Principal>
+            <Dependent Role="CategoryGalleryRelation">
+              <PropertyRef Name="GalleryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CategoryArticleRelation">
+          <Key>
+            <PropertyRef Name="CategoryArticleId" />
+          </Key>
+          <Property Name="CategoryArticleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryId" Type="Int32" />
+          <Property Name="ArticleId" Type="Int32" />
+          <NavigationProperty Name="Article" Relationship="MadamRozikaModel.FK_CategoryArticleRelation_Article" FromRole="CategoryArticleRelation" ToRole="Article" />
+          <NavigationProperty Name="Category" Relationship="MadamRozikaModel.FK_CategoryArticleRelation_Category" FromRole="CategoryArticleRelation" ToRole="Category" />
+        </EntityType>
+        <Association Name="FK_CategoryArticleRelation_Article">
+          <End Type="MadamRozikaModel.Article" Role="Article" Multiplicity="0..1" />
+          <End Type="MadamRozikaModel.CategoryArticleRelation" Role="CategoryArticleRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="ArticleId" />
+            </Principal>
+            <Dependent Role="CategoryArticleRelation">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CategoryArticleRelation_Category">
+          <End Type="MadamRozikaModel.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="MadamRozikaModel.CategoryArticleRelation" Role="CategoryArticleRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="CategoryArticleRelation">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CommentArticleRelation">
+          <Key>
+            <PropertyRef Name="CommentArticleId" />
+          </Key>
+          <Property Name="CommentArticleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ArticleId" Type="Int32" />
+          <Property Name="CommentId" Type="Int32" />
+          <NavigationProperty Name="Article" Relationship="MadamRozikaModel.FK_CommentArticleRelation_Article" FromRole="CommentArticleRelation" ToRole="Article" />
+          <NavigationProperty Name="Comment" Relationship="MadamRozikaModel.FK_CommentArticleRelation_Comment" FromRole="CommentArticleRelation" ToRole="Comment" />
+        </EntityType>
+        <EntityType Name="CommentAuthorRelation">
+          <Key>
+            <PropertyRef Name="CommentAuthorId" />
+          </Key>
+          <Property Name="CommentAuthorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CommentId" Type="Int32" />
+          <Property Name="AuthorId" Type="Int32" />
+          <NavigationProperty Name="Author" Relationship="MadamRozikaModel.FK_CommentAuthorRelation_Author" FromRole="CommentAuthorRelation" ToRole="Author" />
+          <NavigationProperty Name="Comment" Relationship="MadamRozikaModel.FK_CommentAuthorRelation_Category" FromRole="CommentAuthorRelation" ToRole="Comment" />
+        </EntityType>
+        <EntityType Name="CommentGalleryRelation">
+          <Key>
+            <PropertyRef Name="CommentGalleryId" />
+          </Key>
+          <Property Name="CommentGalleryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CommentId" Type="Int32" />
+          <Property Name="GalleryId" Type="Int32" />
+          <NavigationProperty Name="Comment" Relationship="MadamRozikaModel.FK_CommentGalleryRelation_Comment" FromRole="CommentGalleryRelation" ToRole="Comment" />
+          <NavigationProperty Name="Gallery" Relationship="MadamRozikaModel.FK_CommentGalleryRelation_Gallery" FromRole="CommentGalleryRelation" ToRole="Gallery" />
+        </EntityType>
+        <EntityType Name="CommentNewsRelation">
+          <Key>
+            <PropertyRef Name="CommentNewsId" />
+          </Key>
+          <Property Name="CommentNewsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NewsId" Type="Int32" />
+          <Property Name="CommentId" Type="Int32" />
+          <NavigationProperty Name="Comment" Relationship="MadamRozikaModel.FK_COmmentNewsRelation_Comment" FromRole="CommentNewsRelation" ToRole="Comment" />
+          <NavigationProperty Name="News" Relationship="MadamRozikaModel.FK_COmmentNewsRelation_News" FromRole="CommentNewsRelation" ToRole="News" />
+        </EntityType>
+        <EntityType Name="RoleUserRelation">
+          <Key>
+            <PropertyRef Name="RoleUserId" />
+          </Key>
+          <Property Name="RoleUserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleId" Type="Int32" />
+          <Property Name="UserId" Type="Int32" />
+          <NavigationProperty Name="Role" Relationship="MadamRozikaModel.FK_RoleUserRelation_Role" FromRole="RoleUserRelation" ToRole="Role" />
+          <NavigationProperty Name="User" Relationship="MadamRozikaModel.FK_RoleUserRelation_RoleUserRelation" FromRole="RoleUserRelation" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_CommentArticleRelation_Article">
+          <End Type="MadamRozikaModel.Article" Role="Article" Multiplicity="0..1" />
+          <End Type="MadamRozikaModel.CommentArticleRelation" Role="CommentArticleRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="ArticleId" />
+            </Principal>
+            <Dependent Role="CommentArticleRelation">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommentAuthorRelation_Author">
+          <End Type="MadamRozikaModel.Author" Role="Author" Multiplicity="0..1" />
+          <End Type="MadamRozikaModel.CommentAuthorRelation" Role="CommentAuthorRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Author">
+              <PropertyRef Name="AuthorId" />
+            </Principal>
+            <Dependent Role="CommentAuthorRelation">
+              <PropertyRef Name="AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommentArticleRelation_Comment">
+          <End Type="MadamRozikaModel.Comment" Role="Comment" Multiplicity="0..1" />
+          <End Type="MadamRozikaModel.CommentArticleRelation" Role="CommentArticleRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comment">
+              <PropertyRef Name="CommentId" />
+            </Principal>
+            <Dependent Role="CommentArticleRelation">
+              <PropertyRef Name="CommentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommentAuthorRelation_Category">
+          <End Type="MadamRozikaModel.Comment" Role="Comment" Multiplicity="0..1" />
+          <End Type="MadamRozikaModel.CommentAuthorRelation" Role="CommentAuthorRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comment">
+              <PropertyRef Name="CommentId" />
+            </Principal>
+            <Dependent Role="CommentAuthorRelation">
+              <PropertyRef Name="CommentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommentGalleryRelation_Comment">
+          <End Type="MadamRozikaModel.Comment" Role="Comment" Multiplicity="0..1" />
+          <End Type="MadamRozikaModel.CommentGalleryRelation" Role="CommentGalleryRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comment">
+              <PropertyRef Name="CommentId" />
+            </Principal>
+            <Dependent Role="CommentGalleryRelation">
+              <PropertyRef Name="CommentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COmmentNewsRelation_Comment">
+          <End Type="MadamRozikaModel.Comment" Role="Comment" Multiplicity="0..1" />
+          <End Type="MadamRozikaModel.CommentNewsRelation" Role="CommentNewsRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comment">
+              <PropertyRef Name="CommentId" />
+            </Principal>
+            <Dependent Role="CommentNewsRelation">
+              <PropertyRef Name="CommentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommentGalleryRelation_Gallery">
+          <End Type="MadamRozikaModel.Gallery" Role="Gallery" Multiplicity="0..1" />
+          <End Type="MadamRozikaModel.CommentGalleryRelation" Role="CommentGalleryRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gallery">
+              <PropertyRef Name="GalleryId" />
+            </Principal>
+            <Dependent Role="CommentGalleryRelation">
+              <PropertyRef Name="GalleryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COmmentNewsRelation_News">
+          <End Type="MadamRozikaModel.News" Role="News" Multiplicity="0..1" />
+          <End Type="MadamRozikaModel.CommentNewsRelation" Role="CommentNewsRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="News">
+              <PropertyRef Name="NewsId" />
+            </Principal>
+            <Dependent Role="CommentNewsRelation">
+              <PropertyRef Name="NewsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoleUserRelation_Role">
+          <End Type="MadamRozikaModel.Role" Role="Role" Multiplicity="0..1" />
+          <End Type="MadamRozikaModel.RoleUserRelation" Role="RoleUserRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="RoleUserRelation">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoleUserRelation_RoleUserRelation">
+          <End Type="MadamRozikaModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="MadamRozikaModel.RoleUserRelation" Role="RoleUserRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="RoleUserRelation">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TagArticleRelation">
+          <Key>
+            <PropertyRef Name="TagArticleId" />
+          </Key>
+          <Property Name="TagArticleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ArticleId" Type="Int32" />
+          <Property Name="TagId" Type="Int32" />
+          <NavigationProperty Name="Article" Relationship="MadamRozikaModel.FK_TagArticleRelation_Article" FromRole="TagArticleRelation" ToRole="Article" />
+          <NavigationProperty Name="Tag" Relationship="MadamRozikaModel.FK_TagArticleRelation_Tag" FromRole="TagArticleRelation" ToRole="Tag" />
+        </EntityType>
+        <EntityType Name="TagGalleryRelation">
+          <Key>
+            <PropertyRef Name="TagGalleryId" />
+          </Key>
+          <Property Name="TagGalleryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GalleryId" Type="Int32" />
+          <Property Name="TagId" Type="Int32" />
+          <NavigationProperty Name="Gallery" Relationship="MadamRozikaModel.FK_TagGalleryRelation_Gallery" FromRole="TagGalleryRelation" ToRole="Gallery" />
+          <NavigationProperty Name="Tag" Relationship="MadamRozikaModel.FK_TagGalleryRelation_Tag" FromRole="TagGalleryRelation" ToRole="Tag" />
+        </EntityType>
+        <EntityType Name="TagNewsRelation">
+          <Key>
+            <PropertyRef Name="TagNewsId" />
+          </Key>
+          <Property Name="TagNewsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TagId" Type="Int32" />
+          <Property Name="NewsId" Type="Int32" />
+          <NavigationProperty Name="News" Relationship="MadamRozikaModel.FK_TagNewsRelation_News" FromRole="TagNewsRelation" ToRole="News" />
+          <NavigationProperty Name="Tag" Relationship="MadamRozikaModel.FK_TagNewsRelation_Tag" FromRole="TagNewsRelation" ToRole="Tag" />
+        </EntityType>
+        <Association Name="FK_TagArticleRelation_Article">
+          <End Type="MadamRozikaModel.Article" Role="Article" Multiplicity="0..1" />
+          <End Type="MadamRozikaModel.TagArticleRelation" Role="TagArticleRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="ArticleId" />
+            </Principal>
+            <Dependent Role="TagArticleRelation">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TagGalleryRelation_Gallery">
+          <End Type="MadamRozikaModel.Gallery" Role="Gallery" Multiplicity="0..1" />
+          <End Type="MadamRozikaModel.TagGalleryRelation" Role="TagGalleryRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gallery">
+              <PropertyRef Name="GalleryId" />
+            </Principal>
+            <Dependent Role="TagGalleryRelation">
+              <PropertyRef Name="GalleryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TagNewsRelation_News">
+          <End Type="MadamRozikaModel.News" Role="News" Multiplicity="0..1" />
+          <End Type="MadamRozikaModel.TagNewsRelation" Role="TagNewsRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="News">
+              <PropertyRef Name="NewsId" />
+            </Principal>
+            <Dependent Role="TagNewsRelation">
+              <PropertyRef Name="NewsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TagArticleRelation_Tag">
+          <End Type="MadamRozikaModel.Tag" Role="Tag" Multiplicity="0..1" />
+          <End Type="MadamRozikaModel.TagArticleRelation" Role="TagArticleRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tag">
+              <PropertyRef Name="TagId" />
+            </Principal>
+            <Dependent Role="TagArticleRelation">
+              <PropertyRef Name="TagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TagGalleryRelation_Tag">
+          <End Type="MadamRozikaModel.Tag" Role="Tag" Multiplicity="0..1" />
+          <End Type="MadamRozikaModel.TagGalleryRelation" Role="TagGalleryRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tag">
+              <PropertyRef Name="TagId" />
+            </Principal>
+            <Dependent Role="TagGalleryRelation">
+              <PropertyRef Name="TagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TagNewsRelation_Tag">
+          <End Type="MadamRozikaModel.Tag" Role="Tag" Multiplicity="0..1" />
+          <End Type="MadamRozikaModel.TagNewsRelation" Role="TagNewsRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tag">
+              <PropertyRef Name="TagId" />
+            </Principal>
+            <Dependent Role="TagNewsRelation">
+              <PropertyRef Name="TagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MadamRozikaModelStoreContainer" CdmEntityContainer="MadamRozikaEntities">
+          <EntitySetMapping Name="Articles">
+            <EntityTypeMapping TypeName="MadamRozikaModel.Article">
+              <MappingFragment StoreEntitySet="Article">
+                <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+                <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ArticleText" ColumnName="ArticleText" />
+                <ScalarProperty Name="PublishDate" ColumnName="PublishDate" />
+                <ScalarProperty Name="SortingDate" ColumnName="SortingDate" />
+                <ScalarProperty Name="CommentActive" ColumnName="CommentActive" />
+                <ScalarProperty Name="Hit" ColumnName="Hit" />
+                <ScalarProperty Name="Copyright" ColumnName="Copyright" />
+                <ScalarProperty Name="Sites" ColumnName="Sites" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Authors">
+            <EntityTypeMapping TypeName="MadamRozikaModel.Author">
+              <MappingFragment StoreEntitySet="Author">
+                <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="MainPageStatus" ColumnName="MainPageStatus" />
+                <ScalarProperty Name="Sites" ColumnName="Sites" />
+                <ScalarProperty Name="NameUrl" ColumnName="NameUrl" />
+                <ScalarProperty Name="imageUrl" ColumnName="imageUrl" />
+                <ScalarProperty Name="TwitterUrl" ColumnName="TwitterUrl" />
+                <ScalarProperty Name="FacebookUrl" ColumnName="FacebookUrl" />
+                <ScalarProperty Name="LinkedinUrl" ColumnName="LinkedinUrl" />
+                <ScalarProperty Name="Embed" ColumnName="Embed" />
+                <ScalarProperty Name="Rank" ColumnName="Rank" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="MadamRozikaModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Rank" ColumnName="Rank" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="MegaMenu" ColumnName="MegaMenu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="MadamRozikaModel.Comment">
+              <MappingFragment StoreEntitySet="Comment">
+                <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+                <ScalarProperty Name="IpAddress" ColumnName="IpAddress" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Galleries">
+            <EntityTypeMapping TypeName="MadamRozikaModel.Gallery">
+              <MappingFragment StoreEntitySet="Gallery">
+                <ScalarProperty Name="GalleryId" ColumnName="GalleryId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="TitleUrl" ColumnName="TitleUrl" />
+                <ScalarProperty Name="SeoTitle" ColumnName="SeoTitle" />
+                <ScalarProperty Name="SeoTitleUrl" ColumnName="SeoTitleUrl" />
+                <ScalarProperty Name="PublishDate" ColumnName="PublishDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ItemCount" ColumnName="ItemCount" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="Tags" ColumnName="Tags" />
+                <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GalleryItems">
+            <EntityTypeMapping TypeName="MadamRozikaModel.GalleryItem">
+              <MappingFragment StoreEntitySet="GalleryItem">
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="GalleryId" ColumnName="GalleryId" />
+                <ScalarProperty Name="Summary" ColumnName="Summary" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+                <ScalarProperty Name="ItemOrder" ColumnName="ItemOrder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Headlines">
+            <EntityTypeMapping TypeName="MadamRozikaModel.Headline">
+              <MappingFragment StoreEntitySet="Headlines">
+                <ScalarProperty Name="HeadlineId" ColumnName="HeadlineId" />
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+                <ScalarProperty Name="ObjectType" ColumnName="ObjectType" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="ImageUrlPrivate" ColumnName="ImageUrlPrivate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Site" ColumnName="Site" />
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="Rank" ColumnName="Rank" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="News">
+            <EntityTypeMapping TypeName="MadamRozikaModel.News">
+              <MappingFragment StoreEntitySet="News">
+                <ScalarProperty Name="NewsId" ColumnName="NewsId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="TitleUrl" ColumnName="TitleUrl" />
+                <ScalarProperty Name="SeoTitle" ColumnName="SeoTitle" />
+                <ScalarProperty Name="SeoTitleUrl" ColumnName="SeoTitleUrl" />
+                <ScalarProperty Name="Summary" ColumnName="Summary" />
+                <ScalarProperty Name="NewsText" ColumnName="NewsText" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="PublishDate" ColumnName="PublishDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CommentActive" ColumnName="CommentActive" />
+                <ScalarProperty Name="GalleryId" ColumnName="GalleryId" />
+                <ScalarProperty Name="VideoId" ColumnName="VideoId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Tags" ColumnName="Tags" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="UserStatus" ColumnName="UserStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="MadamRozikaModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tags">
+            <EntityTypeMapping TypeName="MadamRozikaModel.Tag">
+              <MappingFragment StoreEntitySet="Tag">
+                <ScalarProperty Name="TagId" ColumnName="TagId" />
+                <ScalarProperty Name="Tag1" ColumnName="Tag" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="MadamRozikaModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="NickName" ColumnName="NickName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Sp_GetNewsListWithCategoryUrl" FunctionName="MadamRozikaModel.Store.Sp_GetNewsListWithCategoryUrl" />
+          <EntitySetMapping Name="CategoryNewsRelations">
+            <EntityTypeMapping TypeName="MadamRozikaModel.CategoryNewsRelation">
+              <MappingFragment StoreEntitySet="CategoryNewsRelation">
+                <ScalarProperty Name="NewsId" ColumnName="NewsId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="CategoryNewsId" ColumnName="CategoryNewsId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CategoryGalleryRelations">
+            <EntityTypeMapping TypeName="MadamRozikaModel.CategoryGalleryRelation">
+              <MappingFragment StoreEntitySet="CategoryGalleryRelation">
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="GalleryId" ColumnName="GalleryId" />
+                <ScalarProperty Name="CategoryGalleryId" ColumnName="CategoryGalleryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CategoryArticleRelations">
+            <EntityTypeMapping TypeName="MadamRozikaModel.CategoryArticleRelation">
+              <MappingFragment StoreEntitySet="CategoryArticleRelation">
+                <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="CategoryArticleId" ColumnName="CategoryArticleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CommentArticleRelations">
+            <EntityTypeMapping TypeName="MadamRozikaModel.CommentArticleRelation">
+              <MappingFragment StoreEntitySet="CommentArticleRelation">
+                <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+                <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+                <ScalarProperty Name="CommentArticleId" ColumnName="CommentArticleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CommentAuthorRelations">
+            <EntityTypeMapping TypeName="MadamRozikaModel.CommentAuthorRelation">
+              <MappingFragment StoreEntitySet="CommentAuthorRelation">
+                <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
+                <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+                <ScalarProperty Name="CommentAuthorId" ColumnName="CommentAuthorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CommentGalleryRelations">
+            <EntityTypeMapping TypeName="MadamRozikaModel.CommentGalleryRelation">
+              <MappingFragment StoreEntitySet="CommentGalleryRelation">
+                <ScalarProperty Name="GalleryId" ColumnName="GalleryId" />
+                <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+                <ScalarProperty Name="CommentGalleryId" ColumnName="CommentGalleryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CommentNewsRelations">
+            <EntityTypeMapping TypeName="MadamRozikaModel.CommentNewsRelation">
+              <MappingFragment StoreEntitySet="CommentNewsRelation">
+                <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+                <ScalarProperty Name="NewsId" ColumnName="NewsId" />
+                <ScalarProperty Name="CommentNewsId" ColumnName="CommentNewsId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoleUserRelations">
+            <EntityTypeMapping TypeName="MadamRozikaModel.RoleUserRelation">
+              <MappingFragment StoreEntitySet="RoleUserRelation">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="RoleUserId" ColumnName="RoleUserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TagArticleRelations">
+            <EntityTypeMapping TypeName="MadamRozikaModel.TagArticleRelation">
+              <MappingFragment StoreEntitySet="TagArticleRelation">
+                <ScalarProperty Name="TagId" ColumnName="TagId" />
+                <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+                <ScalarProperty Name="TagArticleId" ColumnName="TagArticleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TagGalleryRelations">
+            <EntityTypeMapping TypeName="MadamRozikaModel.TagGalleryRelation">
+              <MappingFragment StoreEntitySet="TagGalleryRelation">
+                <ScalarProperty Name="TagId" ColumnName="TagId" />
+                <ScalarProperty Name="GalleryId" ColumnName="GalleryId" />
+                <ScalarProperty Name="TagGalleryId" ColumnName="TagGalleryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TagNewsRelations">
+            <EntityTypeMapping TypeName="MadamRozikaModel.TagNewsRelation">
+              <MappingFragment StoreEntitySet="TagNewsRelation">
+                <ScalarProperty Name="NewsId" ColumnName="NewsId" />
+                <ScalarProperty Name="TagId" ColumnName="TagId" />
+                <ScalarProperty Name="TagNewsId" ColumnName="TagNewsId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

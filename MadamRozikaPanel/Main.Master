@@ -1,0 +1,268 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Main.master.cs" Inherits="MadamRozikaPanel.Main" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <!-- Apple devices fullscreen -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!-- Apple devices fullscreen -->
+    <meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>MADAM ROZİKA - PANEL</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <!-- jQuery UI -->
+    <link rel="stylesheet" href="/static/css/plugins/jquery-ui/jquery-ui.min.css"/>
+    <!-- PageGuide -->
+    <link rel="stylesheet" href="/static/css/plugins/pageguide/pageguide.css">
+    <!-- Fullcalendar -->
+    <link rel="stylesheet" href="/static/css/plugins/fullcalendar/fullcalendar.css">
+    <link rel="stylesheet" href="/static/css/plugins/fullcalendar/fullcalendar.print.css" media="print">
+    <!-- chosen -->
+    <link rel="stylesheet" href="/static/css/plugins/chosen/chosen.css">
+    <!-- select2 -->
+    <link rel="stylesheet" href="/static/css/plugins/select2/select2.css">
+    <!-- icheck -->
+    <link rel="stylesheet" href="/static/css/plugins/icheck/all.css">
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="/static/css/style.css">
+    <!-- Color CSS -->
+    <link rel="stylesheet" href="/static/css/themes.css">
+    <!-- jQuery -->
+    <script src="/static/js/jquery.min.js"></script>
+    <!-- Nice Scroll -->
+    <script src="/static/js/plugins/nicescroll/jquery.nicescroll.min.js"></script>
+    <!-- jQuery UI -->
+    <script src="/static/js/plugins/jquery-ui/jquery-ui.js"></script>
+    <!-- Touch enable for jquery UI -->
+    <script src="/static/js/plugins/touch-punch/jquery.touch-punch.min.js"></script>
+    <!-- slimScroll -->
+    <script src="/static/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="/static/js/bootstrap.min.js"></script>
+    <!-- vmap -->
+    <script src="/static/js/plugins/vmap/jquery.vmap.min.js"></script>
+    <script src="/static/js/plugins/vmap/jquery.vmap.world.js"></script>
+    <script src="/static/js/plugins/vmap/jquery.vmap.sampledata.js"></script>
+    <!-- Bootbox -->
+    <script src="/static/js/plugins/bootbox/jquery.bootbox.js"></script>
+    <!-- Flot -->
+    <script src="/static/js/plugins/flot/jquery.flot.min.js"></script>
+    <script src="/static/js/plugins/flot/jquery.flot.bar.order.min.js"></script>
+    <script src="/static/js/plugins/flot/jquery.flot.pie.min.js"></script>
+    <script src="/static/js/plugins/flot/jquery.flot.resize.min.js"></script>
+    <!-- imagesLoaded -->
+    <script src="/static/js/plugins/imagesLoaded/jquery.imagesloaded.min.js"></script>
+    <!-- PageGuide -->
+    <script src="/static/js/plugins/pageguide/jquery.pageguide.js"></script>
+    <!-- FullCalendar -->
+    <script src="/static/js/plugins/fullcalendar/moment.min.js"></script>
+    <script src="/static/js/plugins/fullcalendar/fullcalendar.min.js"></script>
+    <!-- Chosen -->
+    <script src="/static/js/plugins/chosen/chosen.jquery.min.js"></script>
+    <!-- select2 -->
+    <script src="/static/js/plugins/select2/select2.min.js"></script>
+    <!-- icheck -->
+    <script src="/static/js/plugins/icheck/jquery.icheck.min.js"></script>
+
+    <!-- Theme framework -->
+    <script src="/static/js/eakroko.min.js"></script>
+    <!-- Theme scripts -->
+    <script src="/static/js/application.min.js"></script>
+    <!-- Just for demonstration -->
+    <script src="/static/js/demonstration.min.js"></script>
+
+    <!--[if lte IE 9]>
+		<script src="/static/js/plugins/placeholder/jquery.placeholder.min.js"></script>
+		<script>
+			$(document).ready(function() {
+				$('input, textarea').placeholder();
+			});
+		</script>
+		<![endif]-->
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/static/img/favicon.ico" />
+    <!-- Apple devices Homescreen icon -->
+    <link rel="apple-touch-icon-precomposed" href="/static/img/apple-touch-icon-precomposed.png" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <div id="navigation">
+        <div class="container-fluid">
+            <a href="/" id="brand">MADAM ROZİKA</a>
+            <ul class='main-nav'>
+                <li class='<%=clsAnasayfa %>'>
+                    <a href="/">
+                        <span>Anasayfa</span>
+                    </a>
+                </li>
+                <li class='<%=clsHaberler %>'>
+                    <a href="#" data-toggle="dropdown" class='dropdown-toggle'>
+                        <span>Haberler</span>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="/News/News.aspx">Haber Listele</a>
+                        </li>
+                        <li>
+                            <a href="/News/EditNews.aspx">Haber Ekle</a>
+                        </li>
+                        <li>
+                            <a href="/News/ReOrder.aspx">Konumlandır</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class='<%=clsGaleriler %>'>
+                    <a href="#" data-toggle="dropdown" class='dropdown-toggle'>
+                        <span>Galeriler</span>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="/Gallery/Galleries.aspx">Galeri Listele</a>
+                        </li>
+                        <li>
+                            <a href="/Gallery/EditGallery.aspx">Galeri ekle</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class='<%=clsYazarYazi %>'>
+                    <a href="#" data-toggle="dropdown" class='dropdown-toggle'>
+                        <span>Yazarlar / Yazılar</span>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="/Authors/Authors.aspx">Yazar Listele</a>
+                        </li>
+                        <li>
+                            <a href="/Authors/EditAuthor.aspx">Yazar Ekle</a>
+                        </li>
+                        <li>
+                            <a href="/Authors/Articles.aspx">Yazı Listele</a>
+                        </li>
+                        <li>
+                            <a href="/Authors/EditArticle.aspx">Yazı Ekle</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class='<%=clsModerasyon %>'>
+                    <a href="#" data-toggle="dropdown" class='dropdown-toggle'>
+                        <span>Moderasyon</span>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="/Moderation/Comments.aspx">Yorumlar</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class='<%=clsHeadlines %>'>
+                    <a href="#" data-toggle="dropdown" class='dropdown-toggle'>
+                        <span>Manşet Yönetimi</span>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="/Headlines/HeadlinesManagement.aspx">Manşetler</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class='<%=clsRaporlama %>'>
+                    <a href="#" data-toggle="dropdown" class='dropdown-toggle'>
+                        <span>Raporlama</span>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="layouts-sidebar-hidden.html">Editör İşlem Dökümü</a>
+                        </li>
+                        <li>
+                            <a href="layouts-sidebar-right.html">Editör Saat Bazlı İşlemler</a>
+                        </li>
+                        <li>
+                            <a href="layouts-color.html">İçerik Kaynakları Raporu</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class='<%=clsYetkilendirme %>'>
+                    <a href="#" data-toggle="dropdown" class='dropdown-toggle'>
+                        <span>Yetkilendirme</span>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="layouts-sidebar-hidden.html">Kullanıcı Listele</a>
+                        </li>
+                        <li>
+                            <a href="layouts-sidebar-right.html">Editör Saat Bazlı İşlemler</a>
+                        </li>
+                        <li>
+                            <a href="layouts-color.html">İçerik Kaynakları Raporu</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="user">
+                <ul class="icon-nav">
+                    <li class='dropdown colo'>
+                        <a href="#" class='dropdown-toggle' data-toggle="dropdown">
+                            <i class="fa fa-tint"></i>
+                        </a>
+                        <ul class="dropdown-menu pull-right theme-colors">
+                            <li class="subtitle">Rengini Seç
+                            </li>
+                            <li>
+                                <span class='red'></span>
+                                <span class='orange'></span>
+                                <span class='green'></span>
+                                <span class="brown"></span>
+                                <span class="blue"></span>
+                                <span class='lime'></span>
+                                <span class="teal"></span>
+                                <span class="purple"></span>
+                                <span class="pink"></span>
+                                <span class="magenta"></span>
+                                <span class="grey"></span>
+                                <span class="darkblue"></span>
+                                <span class="lightred"></span>
+                                <span class="lightgrey"></span>
+                                <span class="satblue"></span>
+                                <span class="satgreen"></span>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="dropdown">
+                    <a href="#" class='dropdown-toggle' data-toggle="dropdown">Eren KAYA
+                        <img src="/static/img/demo/user-avatar.jpg" alt="Eren KAYA" />
+                    </a>
+                    <ul class="dropdown-menu pull-right">
+                        <li>
+                            <a href="#">Profil</a>
+                        </li>
+                        <li>
+                            <a href="#">Hesap Ayarları</a>
+                        </li>
+                        <li>
+                            <a href="#">Çıkış</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" id="content">
+        <div id="main">
+            <div class="container-fluid">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

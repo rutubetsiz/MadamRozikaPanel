@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MadamRozikaPanel", "MadamRozikaPanel\MadamRozikaPanel.csproj", "{511BA755-50A6-4A72-BE33-6B6EAB36F659}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MadamRozikaPanelData", "MadamRozikaPanelData\MadamRozikaPanelData.csproj", "{43D6B1E2-B0BC-4637-88C5-4F6492197F3B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{511BA755-50A6-4A72-BE33-6B6EAB36F659}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{511BA755-50A6-4A72-BE33-6B6EAB36F659}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{511BA755-50A6-4A72-BE33-6B6EAB36F659}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{511BA755-50A6-4A72-BE33-6B6EAB36F659}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43D6B1E2-B0BC-4637-88C5-4F6492197F3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43D6B1E2-B0BC-4637-88C5-4F6492197F3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43D6B1E2-B0BC-4637-88C5-4F6492197F3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43D6B1E2-B0BC-4637-88C5-4F6492197F3B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
