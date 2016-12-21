@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 
-namespace MadamRozikaPanel.App_Code.BussinesLayer
+namespace MadamRozikaPanel.BussinesLayer
 {
     public class O_Comment
     {

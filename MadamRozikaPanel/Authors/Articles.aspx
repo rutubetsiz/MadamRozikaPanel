@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="Articles.aspx.cs" Inherits="MadamRozikaPanel.Authors.Articles" %>
+<%@ Import Namespace="MadamRozikaPanel.CrossCuttingLayer" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <!-- New DataTables -->
     <script src="/static/js/plugins/datatables/jquery.dataTables.min.js"></script>

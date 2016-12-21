@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 
-namespace MadamRozikaPanel.App_Code.BussinesLayer
+namespace MadamRozikaPanel.BussinesLayer
 {
     /// <summary>
     /// Summary description for O_Video

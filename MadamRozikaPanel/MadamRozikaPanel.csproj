@@ -19,6 +19,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -1158,17 +1159,16 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BussinesLayer\O_Agency.cs" />
-    <Content Include="BussinesLayer\O_Article.cs" />
-    <Content Include="BussinesLayer\O_Author.cs" />
-    <Content Include="BussinesLayer\O_Comment.cs" />
-    <Content Include="BussinesLayer\O_Cross.cs" />
-    <Content Include="BussinesLayer\O_Gallery.cs" />
-    <Content Include="BussinesLayer\O_Headline.cs" />
-    <Content Include="BussinesLayer\O_News.cs" />
-    <Content Include="BussinesLayer\O_User.cs" />
-    <Content Include="BussinesLayer\O_Video.cs" />
-    <Content Include="BussinesLayer\asda.cs" />
+    <Compile Include="BussinesLayer\O_Agency.cs" />
+    <Compile Include="BussinesLayer\O_Article.cs" />
+    <Compile Include="BussinesLayer\O_Author.cs" />
+    <Compile Include="BussinesLayer\O_Comment.cs" />
+    <Compile Include="BussinesLayer\O_Cross.cs" />
+    <Compile Include="BussinesLayer\O_Gallery.cs" />
+    <Compile Include="BussinesLayer\O_Headline.cs" />
+    <Compile Include="BussinesLayer\O_News.cs" />
+    <Compile Include="BussinesLayer\O_User.cs" />
+    <Compile Include="BussinesLayer\O_Video.cs" />
     <Compile Include="CrossCuttingLayer\BasePage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -1181,15 +1181,15 @@
     <Compile Include="CrossCuttingLayer\Seo.cs" />
     <Compile Include="CrossCuttingLayer\UploadImage.cs" />
     <Compile Include="CrossCuttingLayer\Validation.cs" />
-    <Content Include="DataAccessLayer\Execute.cs" />
-    <Content Include="Model\M_Agencies.cs" />
-    <Content Include="Model\M_Articles.cs" />
-    <Content Include="Model\M_Authors.cs" />
-    <Content Include="Model\M_Comments.cs" />
-    <Content Include="Model\M_Galleries.cs" />
-    <Content Include="Model\M_Headlines.cs" />
-    <Content Include="Model\M_News.cs" />
-    <Content Include="Model\M_Users.cs" />
+    <Compile Include="DataAccessLayer\Execute.cs" />
+    <Compile Include="Model\M_Agencies.cs" />
+    <Compile Include="Model\M_Articles.cs" />
+    <Compile Include="Model\M_Authors.cs" />
+    <Compile Include="Model\M_Comments.cs" />
+    <Compile Include="Model\M_Galleries.cs" />
+    <Compile Include="Model\M_Headlines.cs" />
+    <Compile Include="Model\M_News.cs" />
+    <Compile Include="Model\M_Users.cs" />
     <Compile Include="Authors\Articles.aspx.cs">
       <DependentUpon>Articles.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

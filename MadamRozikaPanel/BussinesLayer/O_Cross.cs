@@ -3,7 +3,7 @@ using System.Data;
 using System.Web.UI.WebControls;
 using System.Xml;
 
-namespace MadamRozikaPanel.App_Code.BussinesLayer
+namespace MadamRozikaPanel.BussinesLayer
 {
     /// <summary>
     /// Summary description for O_Cross

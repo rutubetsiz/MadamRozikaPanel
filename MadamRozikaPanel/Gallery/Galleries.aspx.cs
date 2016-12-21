@@ -5,6 +5,7 @@ using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using MadamRozikaPanel.BussinesLayer;
 using MadamRozikaPanel.CrossCuttingLayer;
 
 namespace MadamRozikaPanel.Gallery
@@ -16,6 +17,7 @@ namespace MadamRozikaPanel.Gallery
         public string GalleryType;
         public string Status;
         public string Search;
+        
 
         protected void Page_Load(object sender, EventArgs e)
         {

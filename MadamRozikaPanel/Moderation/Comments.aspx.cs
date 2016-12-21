@@ -7,10 +7,12 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+
 namespace MadamRozikaPanel.Moderation
 {
     public partial class Comments : System.Web.UI.Page
     {
+        //public O_Comment CommentOprt = new O_Comment(); 
         public string Search;
         public string IsActive;
 
