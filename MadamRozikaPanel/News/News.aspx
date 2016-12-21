@@ -134,10 +134,10 @@
                                         <tr class="<%#Eval("Status").ToString() == "0" ? "danger" : "" %>">
                                             <td><a href="/News/EditNews.aspx?NewsId=<%#Eval("NewsId")%>"><%#Eval("NewsId") %></a></td>
                                             <td>
-                                                <img src="<%#Eval("ImageUrl") %>" height="50" alt="<%# Helper.RemoveHtml(Eval("Title").ToString()) %>"/>
+                                                <img src="<%#Eval("ImageUrl") %>" height="50" alt="<%# MadamRozikaPanel.CrossCuttingLayer.Helper.RemoveHtml(Eval("Title").ToString()) %>"/>
                                             </td>
                                             <td>
-                                                <span><%# Helper.RemoveHtml(Eval("Title").ToString()) %></span>
+                                                <span><%# MadamRozikaPanel.CrossCuttingLayer.Helper.RemoveHtml(Eval("Title").ToString()) %></span>
                                             </td>
                                             <td>
                                                 <%--<asp:DropDownList CssClass="form-control" ID="ddListCategory" Width="100%" runat="server">

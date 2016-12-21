@@ -40,6 +40,15 @@ namespace MadamRozikaPanel.News {
         protected global::System.Web.UI.WebControls.TextBox txtMansetBaslik;
         
         /// <summary>
+        /// txtSeoTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSeoTitle;
+        
+        /// <summary>
         /// txtOzet control.
         /// </summary>
         /// <remarks>
@@ -103,6 +112,15 @@ namespace MadamRozikaPanel.News {
         protected global::System.Web.UI.WebControls.DropDownList ddListTip;
         
         /// <summary>
+        /// DropDownList1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        
+        /// <summary>
         /// cblDigerKategoriler control.
         /// </summary>
         /// <remarks>
@@ -110,6 +128,15 @@ namespace MadamRozikaPanel.News {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBoxList cblDigerKategoriler;
+        
+        /// <summary>
+        /// DropDownList2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList2;
         
         /// <summary>
         /// ckEditor control.
