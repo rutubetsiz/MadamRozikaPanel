@@ -17,7 +17,7 @@ namespace MadamRozikaPanel.Gallery
         public string GalleryType;
         public string Status;
         public string Search;
-        
+        public O_Cross CrossOprt = new O_Cross();
 
         protected void Page_Load(object sender, EventArgs e)
         {

@@ -170,6 +170,7 @@ public class Execute
         //    case DatabaseType.DestekDb: return "SERVER=188.132.198.237;DATABASE=Web_Destek;UID=webdestek;PWD=wd32409867632699;";
         //    default: return "";
         //}
+        return string.Empty;
     }
 }
 public static class ExecuteExtensionMethods
