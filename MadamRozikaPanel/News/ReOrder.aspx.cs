@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MadamRozikaPanel.CrossCuttingLayer;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -13,7 +14,6 @@ namespace MadamRozikaPanel.News
     public partial class ReOrder : System.Web.UI.Page
     {
         public string NewsType;
-        private O_News NewsOprt = new O_News();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -32,8 +32,8 @@ namespace MadamRozikaPanel.News
         public void GetData(string newsType)
         {
             //DataTable dt = NewsOprt.GetAllNewsForOrder(NewsType, DateTime.Parse(DateTime.Today.ToString("yyyy-dd-MM")));
-            DataTable dt = NewsOprt.GetAllNewsForOrder(NewsType, "2015-09-18");
-            rptAllNews.DataSource = dt;
+            //DataTable dt = NewsOprt.GetAllNewsForOrder(NewsType, "2015-09-18");
+            //rptAllNews.DataSource = dt;
             rptAllNews.DataBind();
         }
 
@@ -44,8 +44,7 @@ namespace MadamRozikaPanel.News
                 int NewsId = Convert.ToInt32(e.CommandArgument);
                 TextBox txtTitle = (TextBox)e.Item.FindControl("txtTitle");
                 TextBox txtSummary = (TextBox)e.Item.FindControl("txtSummary");
-                NewsOprt.UpdateNewsForReOrder(txtTitle.Text.Replace("'", "''"), txtSummary.Text.Replace("'", "''"),
-                    NewsId);
+                //NewsOprt.UpdateNewsForReOrder(txtTitle.Text.Replace("'", "''"), txtSummary.Text.Replace("'", "''"),NewsId);
             }
         }
 
@@ -62,8 +61,8 @@ namespace MadamRozikaPanel.News
                              veri[i].Split('#')[1] + " ;";
             }
             updateSql = updateSql.TrimEnd(';');
-            Execute Exec = new Execute(DatabaseType.DBType1);
-            Exec.ExecuteQuery(updateSql);
+            //Execute Exec = new Execute(DatabaseType.DBType1);
+            //Exec.ExecuteQuery(updateSql);
             return "OK";
         }
 

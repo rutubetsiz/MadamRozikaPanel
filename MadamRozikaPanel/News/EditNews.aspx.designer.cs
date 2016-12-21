@@ -121,6 +121,24 @@ namespace MadamRozikaPanel.News {
         protected global::System.Web.UI.HtmlControls.HtmlTextArea ckEditor;
         
         /// <summary>
+        /// fuVideo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.AjaxFileUpload fuVideo;
+        
+        /// <summary>
+        /// fuResim control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.AjaxFileUpload fuResim;
+        
+        /// <summary>
         /// galeriEkleButon control.
         /// </summary>
         /// <remarks>

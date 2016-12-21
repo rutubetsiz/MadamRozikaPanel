@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MadamRozikaPanel.CrossCuttingLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,6 @@ namespace MadamRozikaPanel.Authors
         public string AuthorId;
         public string Search;
 
-        O_Article ArticleOprt = new O_Article();
         protected void Page_Load(object sender, EventArgs e)
         {
             LoadFilterQuery();
@@ -26,7 +26,7 @@ namespace MadamRozikaPanel.Authors
 
         public void GetData()
         {
-            List<M_Articles> list = new List<M_Articles>();
+            //List<M_Articles> list = new List<M_Articles>();
             string QueryString = Request.QueryString.ToString();
             if (!String.IsNullOrEmpty(QueryString))
             {
@@ -56,18 +56,18 @@ namespace MadamRozikaPanel.Authors
                     }
                 }
                 sbCondition.Append("1=1");
-                list = ArticleOprt.GetAllArticlesWithCondition(500, sbCondition.ToString());
+                //list = ArticleOprt.GetAllArticlesWithCondition(500, sbCondition.ToString());
             }
             else
             {
-                list = ArticleOprt.GetAllArticles(500);
+                //list = ArticleOprt.GetAllArticles(500);
             }
-            rptAllNews.DataSource = list;
+            //rptAllNews.DataSource = list;
             rptAllNews.DataBind();
         }
         public void FillFilter()
         {
-            ddListYazarlar.DataSource = ArticleOprt.GetAllAuthors();
+            //ddListYazarlar.DataSource = ArticleOprt.GetAllAuthors();
             ddListYazarlar.DataTextField = "Name";
             ddListYazarlar.DataValueField = "AuthorId";
             ddListYazarlar.DataBind();
@@ -83,7 +83,7 @@ namespace MadamRozikaPanel.Authors
                 int ArticleId = Convert.ToInt32(e.CommandArgument);
                 TextBox txtTitle = (TextBox)e.Item.FindControl("txtTitle");
                 CheckBox cbStatus = (CheckBox)e.Item.FindControl("cbStatus");
-                ArticleOprt.UpdateArticle(txtTitle.Text.Replace("'", "''"), Convert.ToInt32(cbStatus.Checked), ArticleId);
+                //ArticleOprt.UpdateArticle(txtTitle.Text.Replace("'", "''"), Convert.ToInt32(cbStatus.Checked), ArticleId);
             }
             GetData();
         }

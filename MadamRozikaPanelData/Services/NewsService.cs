@@ -99,7 +99,7 @@ namespace MadamRozikaPanelData.Services
         public int Insert(string Title, string TitleUrl, string Summary, string NewsText, int Status, int CommentActive, string NewsTags, int CategoryId, int NewsType)
         {
 
-
+            int _return=0;
             try
             {
                 _context.Entry(new News()).State = EntityState.Added;
@@ -115,7 +115,7 @@ namespace MadamRozikaPanelData.Services
             //Execute Exec = new Execute(DatabaseType.DBType1);
             //Exec.ExecuteQuery("INSERT INTO News (Title, TitleUrl, Summary, NewsText, Status, ModifiedDate, PublishDate, CommentActive, NewsTags, CategoryId, NewsType) VALUES ('" + Title + "', '" + TitleUrl + "', '" + Summary + "', '" + NewsText + "', " + Status + ", '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', " + CommentActive + ", '" + NewsTags + "', " + CategoryId + ", " + NewsType + ")", 0, CommandType.Text);
             //DataRow dr = Exec.ExecuteQuery<DataRow>("SELECT MAX(NewsId) as MaxId FROM News", 0, CommandType.Text);
-            //return Convert.ToInt32(dr["MaxId"].ToString());
+            return _return;
         }
 
 
@@ -140,14 +140,14 @@ namespace MadamRozikaPanelData.Services
         }
         public void Update(string imageurl, int newsId)
         {
-            Execute Exec = new Execute(DatabaseType.DBType1);
-            Exec.ExecuteQuery("UPDATE News SET ImageUrl='" + imageurl + "' WHERE NewsId=" + newsId, 0, CommandType.Text);
+            //Execute Exec = new Execute(DatabaseType.DBType1);
+            //Exec.ExecuteQuery("UPDATE News SET ImageUrl='" + imageurl + "' WHERE NewsId=" + newsId, 0, CommandType.Text);
         }
 
         public void Update(int videoid, int newsId)
         {
-            Execute Exec = new Execute(DatabaseType.DBType1);
-            Exec.ExecuteQuery("UPDATE News SET VideoId=" + videoid + " WHERE NewsId=" + newsId, 0, CommandType.Text);
+            //Execute Exec = new Execute(DatabaseType.DBType1);
+            //Exec.ExecuteQuery("UPDATE News SET VideoId=" + videoid + " WHERE NewsId=" + newsId, 0, CommandType.Text);
         }
     }
 }

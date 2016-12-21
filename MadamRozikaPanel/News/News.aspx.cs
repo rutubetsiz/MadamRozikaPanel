@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+
 namespace MadamRozikaPanel.News
 {
     public partial class News : BasePage
@@ -18,7 +19,6 @@ namespace MadamRozikaPanel.News
         public string Status;
         public string Search;
 
-        private O_News NewsOprt = new O_News();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -32,7 +32,7 @@ namespace MadamRozikaPanel.News
 
         public void GetData()
         {
-            List<M_News> list = new List<M_News>();
+            //List<M_News> list = new List<M_News>();
 
             string QueryString = Request.QueryString.ToString();
             //CategoryId=10200&Agency=Cihan&NewsType=3&Status=0&Search=dsadsa
@@ -65,19 +65,19 @@ namespace MadamRozikaPanel.News
                     }
                 }
                 sbCondition.Append("1=1");
-                list = NewsOprt.GetAllNewsListWithCondition(500, sbCondition.ToString());
+                //list = NewsOprt.GetAllNewsListWithCondition(500, sbCondition.ToString());
             }
             else
             {
-                list = NewsOprt.GetAllNewsList(500);
+                //list = NewsOprt.GetAllNewsList(500);
             }
-            rptAllNews.DataSource = list;
+            //rptAllNews.DataSource = list;
             rptAllNews.DataBind();
         }
 
         public void FillFilter()
         {
-            ddListKategori.DataSource = NewsOprt.KategoriDoldur();
+            //ddListKategori.DataSource = NewsOprt.KategoriDoldur();
             ddListKategori.DataTextField = "Name";
             ddListKategori.DataValueField = "CategoryId";
             ddListKategori.DataBind();
@@ -92,26 +92,26 @@ namespace MadamRozikaPanel.News
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
-                M_News N = (M_News)e.Item.DataItem;
+                //M_News N = (M_News)e.Item.DataItem;
                 //DropDownList ddListCategory = e.Item.FindControl("ddListCategory") as DropDownList;
                 Literal ltrlKategori = e.Item.FindControl("ltrlKategori") as Literal;
                 Literal ltrlDurum = e.Item.FindControl("ltrlDurum") as Literal;
-                DataTable dtKategori = NewsOprt.KategoriDoldur();
-                if (dtKategori.Rows.Count > 0)
-                {
-                    ltrlKategori.Text =
-                        dtKategori.Select("CategoryId = " + N.CategoryId.ToString()).CopyToDataTable().Rows[0]["Name"]
-                            .ToString();
-                }
+                //DataTable dtKategori = NewsOprt.KategoriDoldur();
+                //if (dtKategori.Rows.Count > 0)
+                //{
+                //    ltrlKategori.Text =
+                //        dtKategori.Select("CategoryId = " + N.CategoryId.ToString()).CopyToDataTable().Rows[0]["Name"]
+                //            .ToString();
+                //}
 
-                if (N.Status == 1)
-                {
-                    ltrlDurum.Text = "Aktif";
-                }
-                else
-                {
-                    ltrlDurum.Text = "Pasif";
-                }
+                //if (N.Status == 1)
+                //{
+                //    ltrlDurum.Text = "Aktif";
+                //}
+                //else
+                //{
+                //    ltrlDurum.Text = "Pasif";
+                //}
                 //ddListCategory.DataSource = dtKategori;
                 //ddListCategory.DataTextField = "Name";
                 //ddListCategory.DataValueField = "CategoryId";

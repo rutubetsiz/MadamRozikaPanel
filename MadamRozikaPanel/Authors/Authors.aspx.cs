@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MadamRozikaPanel.CrossCuttingLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,6 @@ namespace MadamRozikaPanel.Authors
         public string Status;
         public string Search;
 
-        O_Author AuthorOprt = new O_Author();
         protected void Page_Load(object sender, EventArgs e)
         {
             LoadFilterQuery();
@@ -26,7 +26,7 @@ namespace MadamRozikaPanel.Authors
 
         public void GetData()
         {
-            List<M_Authors> list = new List<M_Authors>();
+            //List<M_Authors> list = new List<M_Authors>();
             string QueryString = Request.QueryString.ToString();
             if (!String.IsNullOrEmpty(QueryString))
             {
@@ -56,13 +56,13 @@ namespace MadamRozikaPanel.Authors
                     }
                 }
                 sbCondition.Append("1=1");
-                list = AuthorOprt.GetAllAuthorsWithCondition(500, sbCondition.ToString());
+                //list = AuthorOprt.GetAllAuthorsWithCondition(500, sbCondition.ToString());
             }
             else
             {
-                list = AuthorOprt.GetAllAuthors(500);
+                //list = AuthorOprt.GetAllAuthors(500);
             }
-            rptAllNews.DataSource = list;
+            //rptAllNews.DataSource = list;
             rptAllNews.DataBind();
         }
         public void FillFilter()

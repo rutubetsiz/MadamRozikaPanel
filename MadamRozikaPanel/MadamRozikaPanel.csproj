@@ -38,6 +38,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit">
+      <HintPath>..\packages\AjaxControlToolkit.16.1.1.0\lib\net40\AjaxControlToolkit.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -105,6 +108,7 @@
     <Content Include="Static\Js\plugins\elfinder\php\elFinderVolumeLocalFileSystem.class.php" />
     <Content Include="Static\Js\plugins\elfinder\php\elFinderVolumeMySQL.class.php" />
     <Content Include="Static\Js\plugins\elfinder\php\mime.types" />
+    <Content Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1154,38 +1158,38 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Code\BussinesLayer\O_Agency.cs" />
-    <Content Include="App_Code\BussinesLayer\O_Article.cs" />
-    <Content Include="App_Code\BussinesLayer\O_Author.cs" />
-    <Content Include="App_Code\BussinesLayer\O_Comment.cs" />
-    <Content Include="App_Code\BussinesLayer\O_Cross.cs" />
-    <Content Include="App_Code\BussinesLayer\O_Gallery.cs" />
-    <Content Include="App_Code\BussinesLayer\O_Headline.cs" />
-    <Content Include="App_Code\BussinesLayer\O_News.cs" />
-    <Content Include="App_Code\BussinesLayer\O_User.cs" />
-    <Content Include="App_Code\BussinesLayer\O_Video.cs" />
-    <Compile Include="App_Code\CrossCuttingLayer\BasePage.cs">
+    <Content Include="BussinesLayer\O_Agency.cs" />
+    <Content Include="BussinesLayer\O_Article.cs" />
+    <Content Include="BussinesLayer\O_Author.cs" />
+    <Content Include="BussinesLayer\O_Comment.cs" />
+    <Content Include="BussinesLayer\O_Cross.cs" />
+    <Content Include="BussinesLayer\O_Gallery.cs" />
+    <Content Include="BussinesLayer\O_Headline.cs" />
+    <Content Include="BussinesLayer\O_News.cs" />
+    <Content Include="BussinesLayer\O_User.cs" />
+    <Content Include="BussinesLayer\O_Video.cs" />
+    <Content Include="BussinesLayer\asda.cs" />
+    <Compile Include="CrossCuttingLayer\BasePage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="App_Code\CrossCuttingLayer\CustomAttributes.cs" />
-    <Compile Include="App_Code\CrossCuttingLayer\ExtensionMethods.cs" />
-    <Compile Include="App_Code\CrossCuttingLayer\Helper.cs" />
-    <Compile Include="App_Code\CrossCuttingLayer\MemoryCache.cs" />
-    <Compile Include="App_Code\CrossCuttingLayer\Performance.cs" />
-    <Compile Include="App_Code\CrossCuttingLayer\Security.cs" />
-    <Compile Include="App_Code\CrossCuttingLayer\Seo.cs" />
-    <Compile Include="App_Code\CrossCuttingLayer\UploadImage.cs" />
-    <Compile Include="App_Code\CrossCuttingLayer\Validation.cs" />
-    <Compile Include="App_Code\CrossCuttingLayer\dsa.cs" />
-    <Content Include="App_Code\DataAccessLayer\Execute.cs" />
-    <Content Include="App_Code\Model\M_Agencies.cs" />
-    <Content Include="App_Code\Model\M_Articles.cs" />
-    <Content Include="App_Code\Model\M_Authors.cs" />
-    <Content Include="App_Code\Model\M_Comments.cs" />
-    <Content Include="App_Code\Model\M_Galleries.cs" />
-    <Content Include="App_Code\Model\M_Headlines.cs" />
-    <Content Include="App_Code\Model\M_News.cs" />
-    <Content Include="App_Code\Model\M_Users.cs" />
+    <Compile Include="CrossCuttingLayer\CustomAttributes.cs" />
+    <Compile Include="CrossCuttingLayer\ExtensionMethods.cs" />
+    <Compile Include="CrossCuttingLayer\Helper.cs" />
+    <Compile Include="CrossCuttingLayer\MemoryCache.cs" />
+    <Compile Include="CrossCuttingLayer\Performance.cs" />
+    <Compile Include="CrossCuttingLayer\Security.cs" />
+    <Compile Include="CrossCuttingLayer\Seo.cs" />
+    <Compile Include="CrossCuttingLayer\UploadImage.cs" />
+    <Compile Include="CrossCuttingLayer\Validation.cs" />
+    <Content Include="DataAccessLayer\Execute.cs" />
+    <Content Include="Model\M_Agencies.cs" />
+    <Content Include="Model\M_Articles.cs" />
+    <Content Include="Model\M_Authors.cs" />
+    <Content Include="Model\M_Comments.cs" />
+    <Content Include="Model\M_Galleries.cs" />
+    <Content Include="Model\M_Headlines.cs" />
+    <Content Include="Model\M_News.cs" />
+    <Content Include="Model\M_Users.cs" />
     <Compile Include="Authors\Articles.aspx.cs">
       <DependentUpon>Articles.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1290,7 +1294,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Files\images\author\" />
     <Folder Include="Files\images\gallery\" />
     <Folder Include="Files\images\news\" />

@@ -119,13 +119,13 @@
                                     <label for="fuVideo" class="control-label col-sm-2">Video</label>
                                     <div class="col-sm-10">
                                         <ajaxToolkit:AjaxFileUpload ID="fuVideo" OnUploadComplete="fuVideo_UploadComplete" runat="server" />
+
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="fuResim" class="control-label col-sm-2">Metin İçi Resim</label>
                                     <div class="col-sm-10">
                                         <ajaxToolkit:AjaxFileUpload ID="fuResim" OnUploadComplete="fuResim_UploadComplete" runat="server" OnClientUploadComplete="imgUploaded" Mode="Client" />
-
                                     </div>
                                 </div>
                                 <div class="form-group" id="galeriEkleButon" runat="server">

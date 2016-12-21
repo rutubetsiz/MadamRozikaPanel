@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MadamRozikaPanel.CrossCuttingLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,6 @@ namespace MadamRozikaPanel.Moderation
         public string Search;
         public string IsActive;
 
-        public static O_Comment CommentOprt = new O_Comment();
         protected void Page_Load(object sender, EventArgs e)
         {
             LoadFilterQuery();
@@ -26,7 +26,7 @@ namespace MadamRozikaPanel.Moderation
 
         public void GetData()
         {
-            List<M_Comments> list = new List<M_Comments>();
+            //List<M_Comments> list = new List<M_Comments>();
             string QueryString = Request.QueryString.ToString();
             if (!String.IsNullOrEmpty(QueryString))
             {
@@ -53,13 +53,13 @@ namespace MadamRozikaPanel.Moderation
                     }
                 }
                 sbCondition.Append("1=1");
-                list = CommentOprt.GetAllCommensWithCondition(500, sbCondition.ToString());
+                //list = CommentOprt.GetAllCommensWithCondition(500, sbCondition.ToString());
             }
             else
             {
-                list = CommentOprt.GetAllComments(500);
+                //list = CommentOprt.GetAllComments(500);
             }
-            rptAllNews.DataSource = list;
+            //rptAllNews.DataSource = list;
             rptAllNews.DataBind();
         }
         public void FillFilter()
@@ -72,11 +72,11 @@ namespace MadamRozikaPanel.Moderation
             int CommentId = Convert.ToInt32(e.CommandArgument);
             if (e.CommandName == "btnAktifle")
             {
-                CommentOprt.UpdateComment(CommentId.ToString(), "1");
+                //CommentOprt.UpdateComment(CommentId.ToString(), "1");
             }
             else if (e.CommandName == "btnPasifle")
             {
-                CommentOprt.UpdateComment(CommentId.ToString(), "2");
+                //CommentOprt.UpdateComment(CommentId.ToString(), "2");
             }
             GetData();
         }

@@ -18,8 +18,6 @@ namespace MadamRozikaPanel.Authors
         public string Link;
         public string AltBaslik;
         public int Rank;
-        O_Author AuthorOprt = new O_Author();
-        O_Cross CrossOprt = new O_Cross();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(Request.QueryString["AuthorId"]))
@@ -33,13 +31,13 @@ namespace MadamRozikaPanel.Authors
             if (!IsPostBack)
             {
                 //cblSite = CrossOprt.FillSites(ref cblSite);
-                ddListKategori.DataSource = CrossOprt.KategoriDoldur();
+                //ddListKategori.DataSource = CrossOprt.KategoriDoldur();
                 ddListKategori.DataTextField = "Name";
                 ddListKategori.DataValueField = "CategoryId";
                 ddListKategori.DataBind();
                 ddListKategori.Items.Insert(0, new ListItem("Tüm Kategoriler", "-1"));
 
-                ddListSira.DataSource = AuthorOprt.GetRowNumber();
+                //ddListSira.DataSource = AuthorOprt.GetRowNumber();
                 ddListSira.DataTextField = "RowNumber";
                 ddListSira.DataValueField = "RowNumber";
                 ddListSira.DataBind();
@@ -57,19 +55,19 @@ namespace MadamRozikaPanel.Authors
                 AltBaslik = AuthorId + " ID'li Yazarı Düzenle";
                 if (!IsPostBack)
                 {
-                    M_Authors A = AuthorOprt.GetAllAuthorDetail(AuthorId);
-                    txtAd.Text = A.Name;
-                    txtMail.Text = A.Mail;
-                    txtTwitter.Text = A.TwitterUrl;
-                    txtFacebook.Text = A.FacebookUrl;
-                    txtLinkedin.Text = A.LinkedinUrl;
-                    txtEmbed.Text = A.Embed;
-                    cbDurum.Checked = Convert.ToBoolean(A.Status);
-                    cbAnaSayfa.Checked = Convert.ToBoolean(A.MainPageStatus);
-                    //cblSite = CrossOprt.SelectSites(ref cblSite, A.Sites.Item(0));
-                    ddListKategori.SelectedValue = A.CategoryId.ToString();
-                    ddListSira.SelectedValue = A.Rank.ToString();
-                    Rank = A.Rank;
+                    //M_Authors A = AuthorOprt.GetAllAuthorDetail(AuthorId);
+                    //txtAd.Text = A.Name;
+                    //txtMail.Text = A.Mail;
+                    //txtTwitter.Text = A.TwitterUrl;
+                    //txtFacebook.Text = A.FacebookUrl;
+                    //txtLinkedin.Text = A.LinkedinUrl;
+                    //txtEmbed.Text = A.Embed;
+                    //cbDurum.Checked = Convert.ToBoolean(A.Status);
+                    //cbAnaSayfa.Checked = Convert.ToBoolean(A.MainPageStatus);
+                    ////cblSite = CrossOprt.SelectSites(ref cblSite, A.Sites.Item(0));
+                    //ddListKategori.SelectedValue = A.CategoryId.ToString();
+                    //ddListSira.SelectedValue = A.Rank.ToString();
+                    //Rank = A.Rank;
                 }
             }
         }
@@ -85,22 +83,22 @@ namespace MadamRozikaPanel.Authors
             {
                 if (FuAuthor.HasFile)
                 {
-                    string AId = AuthorOprt.InsertAuthor(txtAd.Text, txtMail.Text, Convert.ToInt32(cbDurum.Checked), Convert.ToInt32(cbAnaSayfa.Checked), NameUrl, folder + NameUrl + Path.GetExtension(FuAuthor.FileName), txtTwitter.Text, txtFacebook.Text, txtLinkedin.Text, txtEmbed.Text, Convert.ToInt32(ddListKategori.SelectedValue), Convert.ToInt32(ddListSira.SelectedValue));
-                    if (!string.IsNullOrEmpty(AId))
-                    {
-                        #region Yazar için seçilen görselin orjinali ve varyasyonları kaydediliyor.
-                        if (!Directory.Exists(folder))
-                            Directory.CreateDirectory(folder);
-                        byte[] imageByteArray = FuAuthor.FileBytes;
-                        MemoryStream stream = new MemoryStream();
-                        stream.Write(imageByteArray, 0, imageByteArray.Length);
-                        Bitmap imageBitMap = new Bitmap(stream);
-                        System.Drawing.Image yeniImg = System.Drawing.Image.FromStream(stream);
-                        int height = (yeniImg.Height * 640) / yeniImg.Width;
-                        UploadImage uploadGaleriResmi = new UploadImage();
-                        uploadGaleriResmi.SaveImageSingle(imageBitMap, folder, NameUrl + Path.GetExtension(FuAuthor.FileName), 200, 200);
-                        #endregion
-                    }
+                    //string AId = AuthorOprt.InsertAuthor(txtAd.Text, txtMail.Text, Convert.ToInt32(cbDurum.Checked), Convert.ToInt32(cbAnaSayfa.Checked), NameUrl, folder + NameUrl + Path.GetExtension(FuAuthor.FileName), txtTwitter.Text, txtFacebook.Text, txtLinkedin.Text, txtEmbed.Text, Convert.ToInt32(ddListKategori.SelectedValue), Convert.ToInt32(ddListSira.SelectedValue));
+                    //if (!string.IsNullOrEmpty(AId))
+                    //{
+                    //    #region Yazar için seçilen görselin orjinali ve varyasyonları kaydediliyor.
+                    //    if (!Directory.Exists(folder))
+                    //        Directory.CreateDirectory(folder);
+                    //    byte[] imageByteArray = FuAuthor.FileBytes;
+                    //    MemoryStream stream = new MemoryStream();
+                    //    stream.Write(imageByteArray, 0, imageByteArray.Length);
+                    //    Bitmap imageBitMap = new Bitmap(stream);
+                    //    System.Drawing.Image yeniImg = System.Drawing.Image.FromStream(stream);
+                    //    int height = (yeniImg.Height * 640) / yeniImg.Width;
+                    //    UploadImage uploadGaleriResmi = new UploadImage();
+                    //    uploadGaleriResmi.SaveImageSingle(imageBitMap, folder, NameUrl + Path.GetExtension(FuAuthor.FileName), 200, 200);
+                    //    #endregion
+                    //}
                 }
             }
             else
@@ -120,11 +118,11 @@ namespace MadamRozikaPanel.Authors
                     uploadGaleriResmi.SaveImageSingle(imageBitMap, folder, NameUrl + Path.GetExtension(FuAuthor.FileName), 200, 200);
                     #endregion
 
-                    AuthorOprt.UpdateAuthor(txtAd.Text, txtMail.Text, Convert.ToInt32(cbDurum.Checked), Convert.ToInt32(cbAnaSayfa.Checked), NameUrl, folder + NameUrl + Path.GetExtension(FuAuthor.FileName), txtTwitter.Text, txtFacebook.Text, txtLinkedin.Text, txtEmbed.Text, Convert.ToInt32(ddListKategori.SelectedValue), Convert.ToInt32(ddListSira.SelectedValue), Rank, AuthorId);
+                    //AuthorOprt.UpdateAuthor(txtAd.Text, txtMail.Text, Convert.ToInt32(cbDurum.Checked), Convert.ToInt32(cbAnaSayfa.Checked), NameUrl, folder + NameUrl + Path.GetExtension(FuAuthor.FileName), txtTwitter.Text, txtFacebook.Text, txtLinkedin.Text, txtEmbed.Text, Convert.ToInt32(ddListKategori.SelectedValue), Convert.ToInt32(ddListSira.SelectedValue), Rank, AuthorId);
                 }
                 else
                 {
-                    AuthorOprt.UpdateAuthor(txtAd.Text, txtMail.Text, Convert.ToInt32(cbDurum.Checked), Convert.ToInt32(cbAnaSayfa.Checked), NameUrl, txtTwitter.Text, txtFacebook.Text, txtLinkedin.Text, txtEmbed.Text, Convert.ToInt32(ddListKategori.SelectedValue), Convert.ToInt32(ddListSira.SelectedValue), Rank, AuthorId);
+                    //AuthorOprt.UpdateAuthor(txtAd.Text, txtMail.Text, Convert.ToInt32(cbDurum.Checked), Convert.ToInt32(cbAnaSayfa.Checked), NameUrl, txtTwitter.Text, txtFacebook.Text, txtLinkedin.Text, txtEmbed.Text, Convert.ToInt32(ddListKategori.SelectedValue), Convert.ToInt32(ddListSira.SelectedValue), Rank, AuthorId);
                 }
             }
         }

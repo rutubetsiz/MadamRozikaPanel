@@ -8,12 +8,12 @@ using System.Web;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using MadamRozikaPanel.CrossCuttingLayer;
 
 namespace MadamRozikaPanel.Headlines
 {
     public partial class HeadlinesManagement : System.Web.UI.Page
     {
-        O_Headline HeadlinesOprt = new O_Headline();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -24,9 +24,9 @@ namespace MadamRozikaPanel.Headlines
 
         public void GetData()
         {
-            List<M_Headlines> lst = HeadlinesOprt.GetData(18);
-            rptAllNews.DataSource = lst;
-            rptAllNews.DataBind();
+            //List<M_Headlines> lst = HeadlinesOprt.GetData(18);
+            //rptAllNews.DataSource = lst;
+            //rptAllNews.DataBind();
         }
 
         protected void rptAllNews_ItemCommand(object source, RepeaterCommandEventArgs e)
@@ -52,11 +52,11 @@ namespace MadamRozikaPanel.Headlines
 
                     image = folder + HeadlineId + "_640_360" + Path.GetExtension(fuGorsel.FileName);
                     uploadHeadline.SaveImageSingle(imageBitMap, folder + "/", HeadlineId + "_640_360" + Path.GetExtension(fuGorsel.FileName), 640, 360);
-                    HeadlinesOprt.UpdateHeadline(txtUrl.Text, txtTitle.Text, txtSummary.Text, image, Convert.ToInt32(cbStatus.Checked), HeadlineId.ToString());
+                    //HeadlinesOprt.UpdateHeadline(txtUrl.Text, txtTitle.Text, txtSummary.Text, image, Convert.ToInt32(cbStatus.Checked), HeadlineId.ToString());
                 }
                 else
                 {
-                    HeadlinesOprt.UpdateHeadline(txtUrl.Text, txtTitle.Text, txtSummary.Text, Convert.ToInt32(cbStatus.Checked), HeadlineId.ToString());
+                    //HeadlinesOprt.UpdateHeadline(txtUrl.Text, txtTitle.Text, txtSummary.Text, Convert.ToInt32(cbStatus.Checked), HeadlineId.ToString());
                 }
             }
             GetData();
@@ -74,8 +74,8 @@ namespace MadamRozikaPanel.Headlines
                 updateSql += " UPDATE Headline SET Rank=" + veri[i].Split('#')[0] + " WHERE HeadlineId=" + veri[i].Split('#')[1] + " ;";
             }
             updateSql = updateSql.TrimEnd(';');
-            Execute Exec = new Execute(DatabaseType.DBType1);
-            Exec.ExecuteQuery(updateSql);
+            //Execute Exec = new Execute(DatabaseType.DBType1);
+            //Exec.ExecuteQuery(updateSql);
             return "OK";
         }
     }

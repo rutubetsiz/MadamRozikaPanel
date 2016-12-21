@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using MadamRozikaPanel.CrossCuttingLayer;
 
 namespace MadamRozikaPanel.Gallery
 {
@@ -15,8 +17,6 @@ namespace MadamRozikaPanel.Gallery
         public string Status;
         public string Search;
 
-        O_Gallery GalleryOprt = new O_Gallery();
-        public O_Cross CrossOprt = new O_Cross();
         protected void Page_Load(object sender, EventArgs e)
         {
             LoadFilterQuery();
@@ -29,7 +29,7 @@ namespace MadamRozikaPanel.Gallery
 
         public void GetData()
         {
-            List<M_Galleries> list = new List<M_Galleries>();
+            //List<M_Galleries> list = new List<M_Galleries>();
             string QueryString = Request.QueryString.ToString();
             if (!String.IsNullOrEmpty(QueryString))
             {
@@ -59,18 +59,18 @@ namespace MadamRozikaPanel.Gallery
                     }
                 }
                 sbCondition.Append("1=1");
-                list = GalleryOprt.GetAllGalleryListWithCondition(500, sbCondition.ToString());
+                //list = GalleryOprt.GetAllGalleryListWithCondition(500, sbCondition.ToString());
             }
             else
             {
-                list = GalleryOprt.GetAllGalleries(500);
+                //list = GalleryOprt.GetAllGalleries(500);
             }
-            rptAllNews.DataSource = list;
+            //rptAllNews.DataSource = list;
             rptAllNews.DataBind();
         }
         public void FillFilter()
         {
-            ddListKategori.DataSource = GalleryOprt.FillDropDownList();
+            //ddListKategori.DataSource = GalleryOprt.FillDropDownList();
             ddListKategori.DataTextField = "Name";
             ddListKategori.DataValueField = "CategoryId";
             ddListKategori.DataBind();
@@ -85,13 +85,13 @@ namespace MadamRozikaPanel.Gallery
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
-                M_Galleries G = (M_Galleries)e.Item.DataItem;
+                //M_Galleries G = (M_Galleries)e.Item.DataItem;
                 DropDownList ddListCategory = e.Item.FindControl("ddListCategory") as DropDownList;
-                ddListCategory.DataSource = GalleryOprt.FillDropDownList();
+                //ddListCategory.DataSource = GalleryOprt.FillDropDownList();
                 ddListCategory.DataTextField = "Name";
                 ddListCategory.DataValueField = "CategoryId";
                 ddListCategory.DataBind();
-                ddListCategory.SelectedValue = G.CategoryId.ToString();
+                //ddListCategory.SelectedValue = G.CategoryId.ToString();
             }
         }
         protected void rptAllNews_ItemCommand(object source, RepeaterCommandEventArgs e)
@@ -103,7 +103,7 @@ namespace MadamRozikaPanel.Gallery
                 TextBox txtShortTitle = (TextBox)e.Item.FindControl("txtShortTitle");
                 DropDownList ddListCategory = (DropDownList)e.Item.FindControl("ddListCategory");
                 CheckBox cbStatus = (CheckBox)e.Item.FindControl("cbStatus");
-                GalleryOprt.UpdateGallery(txtTitle.Text.Replace("'", "''"), Convert.ToInt32(ddListCategory.SelectedValue), Convert.ToInt32(cbStatus.Checked), NewsId);
+                //GalleryOprt.UpdateGallery(txtTitle.Text.Replace("'", "''"), Convert.ToInt32(ddListCategory.SelectedValue), Convert.ToInt32(cbStatus.Checked), NewsId);
             }
             GetData();
         }

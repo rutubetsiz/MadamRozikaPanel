@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MadamRozikaPanel.CrossCuttingLayer;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Drawing;
@@ -16,7 +17,6 @@ namespace MadamRozikaPanel.Headlines
         public int HeadlineId;
         public string Link;
         public string AltBaslik;
-        O_Headline HeadlineOprt = new O_Headline();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(Request.QueryString["HeadlineId"]))
@@ -74,8 +74,8 @@ namespace MadamRozikaPanel.Headlines
             {
                 if (FuManset.HasFile)
                 {
-                    string HId = HeadlineOprt.InsertHeadline(title, description, url, Convert.ToInt32(cbDurum.Checked), folder, "Manşet");
-                    if (!string.IsNullOrEmpty(HId))
+                    //string HId = HeadlineOprt.InsertHeadline(title, description, url, Convert.ToInt32(cbDurum.Checked), folder, "Manşet");
+                    if (true) //if (!string.IsNullOrEmpty(HId))
                     {
                         #region Manşet için seçilen görsel yükleniyor
 
@@ -83,7 +83,7 @@ namespace MadamRozikaPanel.Headlines
                         UploadImage uploadHeadline = new UploadImage();
                         if (!Directory.Exists(folder))
                             Directory.CreateDirectory(folder);
-                        uploadHeadline.SaveImageSingle(imageBitMap, folder + "/", HId + "_640_360" + Path.GetExtension(FuManset.FileName), 640, 360);
+                        //uploadHeadline.SaveImageSingle(imageBitMap, folder + "/", HId + "_640_360" + Path.GetExtension(FuManset.FileName), 640, 360);
                         #endregion
                     }
                 }
