@@ -1,4 +1,5 @@
-﻿using MadamRozikaPanel.CrossCuttingLayer;
+﻿using MadamRozikaPanel.BussinesLayer;
+using MadamRozikaPanel.CrossCuttingLayer;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -17,7 +18,7 @@ namespace MadamRozikaPanel.News
         public int NewsId;
         public string Link;
         public string AltBaslik;
-
+        public O_News NewsOprt = new O_News();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(Request.QueryString["NewsId"]))
@@ -47,14 +48,20 @@ namespace MadamRozikaPanel.News
                     Baslik = "Haber Düzenle";
                     Link = "/News/EditNews.aspx?NewsId=" + NewsId;
                     AltBaslik = NewsId + " ID'li Haberi Düzenle";
-                    //M_News N = NewsOprt.NewsDetail(NewsId);
-                    //txtMansetBaslik.Text = N.Title;
-                    //txtOzet.Text = N.Summary;
-                    //txtEtiketler.Text = N.NewsTags;
-                    //ddListKategori.SelectedValue = N.CategoryId.ToString();
-                    //ddListAktifmi.SelectedValue = N.Status.ToString();
-                    //cbYorum.Checked = N.CommentActive;
-                    //ckEditor.Value = N.NewsText;
+                    var N = NewsOprt.NewsDetail(NewsId);
+                    txtMansetBaslik.Text = N.Title;
+                    txtSeoTitle.Text = N.SeoTitle;
+                    txtOzet.Text = N.Summary;
+                    var etiketler = "";
+                    foreach (var item in N.TagNewsRelations)
+                    {
+                        etiketler += item.Tag.Tag1 + ", ";
+                    }
+                    txtEtiketler.Text = etiketler.Remove(etiketler.LastIndexOf(','), 2);
+                    ddListKategori.SelectedValue = N.CategoryId.ToSafeString();
+                    ddListAktifmi.SelectedValue = N.Status.ToSafeString();
+                    cbYorum.Checked = N.CommentActive==1;
+                    ckEditor.Value = N.NewsText;
                     //cblDigerKategoriler = CrossOprt.ReturnDigerKategoriler(ref cblDigerKategoriler, NewsId);
                 }
             }
@@ -62,13 +69,13 @@ namespace MadamRozikaPanel.News
 
         public void FillFilter()
         {
-            //ddListKategori.DataSource = NewsOprt.KategoriDoldur();
+            ddListKategori.DataSource = NewsOprt.KategoriDoldur();
             ddListKategori.DataTextField = "Name";
             ddListKategori.DataValueField = "CategoryId";
             ddListKategori.DataBind();
             ddListKategori.Items.Insert(0, new ListItem("Tüm Kategoriler", "-1"));
 
-            //cblDigerKategoriler.DataSource = NewsOprt.TumKategorileriDoldur();
+            cblDigerKategoriler.DataSource = NewsOprt.TumKategorileriDoldur();
             cblDigerKategoriler.DataTextField = "Name";
             cblDigerKategoriler.DataValueField = "CategoryId";
             cblDigerKategoriler.DataBind();
@@ -166,7 +173,7 @@ namespace MadamRozikaPanel.News
             stream.Write(imageByteArray, 0, imageByteArray.Length);
             Bitmap imageBitMap = new Bitmap(stream);
             System.Drawing.Image yeniImg = System.Drawing.Image.FromStream(stream);
-            int height = (yeniImg.Height*640)/yeniImg.Width;
+            int height = (yeniImg.Height * 640) / yeniImg.Width;
             UploadImage uploadHabericiResim = new UploadImage();
             uploadHabericiResim.SaveImageSingle(imageBitMap, dir, rnd + e.FileName, 640, height);
         }

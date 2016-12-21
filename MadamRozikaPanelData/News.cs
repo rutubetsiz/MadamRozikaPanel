@@ -35,7 +35,6 @@ namespace MadamRozikaPanelData
         public Nullable<int> GalleryId { get; set; }
         public Nullable<int> VideoId { get; set; }
         public Nullable<int> UserId { get; set; }
-        public string Tags { get; set; }
         public Nullable<int> CategoryId { get; set; }
         public string ImageUrl { get; set; }
         public Nullable<byte> UserStatus { get; set; }

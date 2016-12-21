@@ -104,9 +104,9 @@
                                     <asp:ListItem Text="Tepe Manşet" Value="3"></asp:ListItem>
                                 </asp:DropDownList>
                             </div>
-                            <label for="ddlYorumAktifmi" class="control-label col-sm-1">Yorum Aktif mi?</label>
+                            <label for="ddlYazarAktifmi" class="control-label col-sm-1">Yazar Aktif mi?</label>
                             <div class="col-sm-2">
-                                <asp:DropDownList name="ddlYorumAktifmi" ID="DropDownList1" class='form-control' runat="server">
+                                <asp:DropDownList name="ddlYazarAktifmi" ID="DropDownList2" class='form-control' runat="server">
                                     <asp:ListItem Text="Aktif" Value="1" Selected="True"></asp:ListItem>
                                     <asp:ListItem Text="Pasif" Value="0"></asp:ListItem>
                                 </asp:DropDownList>
@@ -118,13 +118,7 @@
                                 <asp:CheckBoxList runat="server" ID="cblDigerKategoriler" CssClass="checkbox" RepeatLayout="Flow" RepeatDirection="Horizontal">
                                 </asp:CheckBoxList>
                             </div>
-                             <label for="ddlYazarAktifmi" class="control-label col-sm-1">Yazar Aktif mi?</label>
-                            <div class="col-sm-2">
-                                <asp:DropDownList name="ddlYazarAktifmi" ID="DropDownList2" class='form-control' runat="server">
-                                    <asp:ListItem Text="Aktif" Value="1" Selected="True"></asp:ListItem>
-                                    <asp:ListItem Text="Pasif" Value="0"></asp:ListItem>
-                                </asp:DropDownList>
-                            </div>
+                             
                         </div>
                         <div class="row" style="margin: 0px!important;">
                             <div class="col-sm-8 nopadding">

@@ -185,7 +185,6 @@
           <Property Name="GalleryId" Type="int" />
           <Property Name="VideoId" Type="int" />
           <Property Name="UserId" Type="int" />
-          <Property Name="Tags" Type="varchar" MaxLength="1000" />
           <Property Name="CategoryId" Type="int" />
           <Property Name="ImageUrl" Type="varchar" MaxLength="500" />
           <Property Name="UserStatus" Type="tinyint" />
@@ -770,7 +769,6 @@
           <Property Name="GalleryId" Type="Int32" />
           <Property Name="VideoId" Type="Int32" />
           <Property Name="UserId" Type="Int32" />
-          <Property Name="Tags" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Name="CategoryId" Type="Int32" />
           <Property Name="ImageUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="UserStatus" Type="Byte" />
@@ -1435,7 +1433,6 @@
                 <ScalarProperty Name="GalleryId" ColumnName="GalleryId" />
                 <ScalarProperty Name="VideoId" ColumnName="VideoId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Tags" ColumnName="Tags" />
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
                 <ScalarProperty Name="UserStatus" ColumnName="UserStatus" />

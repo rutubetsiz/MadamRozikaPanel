@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Web.UI.WebControls;
+using MadamRozikaPanel.CrossCuttingLayer;
 using MadamRozikaPanelData;
 
 namespace MadamRozikaPanel.BussinesLayer
@@ -16,8 +18,29 @@ namespace MadamRozikaPanel.BussinesLayer
 
         public MadamRozikaPanelData.News NewsDetail(int newsId)
         {
-            return _db.News.FirstOrDefault(x => x.NewsId == newsId);
+            return _db.News.Include(x => x.TagNewsRelations).Include(xt => xt.TagNewsRelations.Select(t => t.Tag)).FirstOrDefault(x => x.NewsId == newsId);
         }
+
+
+        public CheckBoxList ReturnDigerKategoriler(ref CheckBoxList cbl, int newsid)
+        {
+            var result = _db.News.Include(x => x.CategoryNewsRelations).Include(xt => xt.CategoryNewsRelations.Select(t => t.Category)).Where(n => n.NewsId == newsid);
+            foreach (var item in result)
+            {
+                cbl.Items.FindByValue(item.CategoryId.ToSafeString()).Selected = true;
+            }
+            return cbl;
+        }
+        public List<Category> KategoriDoldur()
+        {
+            return _db.Categories.Where(x => x.ParentId == 0 && x.Status == 1 && x.Url != "anasayfa").OrderBy(x => x.Rank).ToList();
+        }
+
+        public List<Category> TumKategorileriDoldur()
+        {
+            return _db.Categories.Where(x => x.Status == 1 && x.Url != "anasayfa" && x.ParentId != 0).OrderBy(x => x.ParentId).ThenBy(x => x.Rank).ToList();
+        }
+
         //public List<M_News> GetAllNewsList(int top)
         //{
 
